@@ -11,7 +11,7 @@ import com.example.app_turistica_android.Maps.MapsActivity;
 
 public class LogIn extends AppCompatActivity {
 
-    Button btnInicio;
+    Button btnInicio, btnRegistrar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +28,17 @@ public class LogIn extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogIn.this, Registro.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void instancias() {
         btnInicio = findViewById(R.id.btnInicio);
+        btnRegistrar = findViewById(R.id.btnRegistrar);
     }
 }

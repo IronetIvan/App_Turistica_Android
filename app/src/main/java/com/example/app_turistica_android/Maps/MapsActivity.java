@@ -1,9 +1,10 @@
-package com.example.app_turistica_android;
+package com.example.app_turistica_android.Maps;
 
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
+import com.example.app_turistica_android.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

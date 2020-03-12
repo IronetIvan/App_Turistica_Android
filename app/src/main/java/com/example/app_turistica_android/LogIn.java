@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.app_turistica_android.Maps.MapsActivity;
+
 public class LogIn extends AppCompatActivity {
 
     Button btnInicio;

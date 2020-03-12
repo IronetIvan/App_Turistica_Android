@@ -74,8 +74,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void Localizaciones(GoogleMap googleMap){
         mMap = googleMap;
 
-        final LatLng Retiro = new LatLng(40.4093703,-3.6912309);
+        final LatLng Retiro = new LatLng(40.4147864,-3.687761);
         mMap.addMarker(new MarkerOptions().position(Retiro).title("Parque del Retiro"));
+        final LatLng Cibeles = new LatLng(40.4193367,-3.6952712);
+        mMap.addMarker(new MarkerOptions().position(Cibeles).title("Fuente de Cibeles"));
+        final LatLng Neptuno = new LatLng(40.4152084,-3.6962812);
+        mMap.addMarker(new MarkerOptions().position(Neptuno).title("Fuente de Neptuno"));
+        final LatLng MPrado = new LatLng(40.4137859,-3.6943158);
+        mMap.addMarker(new MarkerOptions().position(MPrado).title("Museo del Prado"));
+        final LatLng KM0 = new LatLng(40.4166373,-3.7045839);
+        mMap.addMarker(new MarkerOptions().position(KM0).title("Sol"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(KM0));//Señalar punto carga del mapa
+        final LatLng PlzMayor = new LatLng(40.4153774,-3.7082803);
+        mMap.addMarker(new MarkerOptions().position(PlzMayor).title("Plaza Mayor"));
+        final LatLng PalaReal = new LatLng(40.4179591,-3.7165007);
+        mMap.addMarker(new MarkerOptions().position(PalaReal).title("Palacio Real Madrid"));
+        final LatLng TDebod = new LatLng(40.4240257,-3.7199582);
+        mMap.addMarker(new MarkerOptions().position(TDebod).title("Templo de Debod"));
+
 
 
 

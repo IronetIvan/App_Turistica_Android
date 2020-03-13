@@ -2,6 +2,12 @@ package com.example.app_turistica_android.Maps;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.app_turistica_android.R;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -16,12 +23,16 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private Button btnTypeSatelite, btnTypeHybrid;
+    private Marker marcador;
+    double lat = 0.0;
+    double lng = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,43 +71,87 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        miUbicacion();
 
-        // Add a marker in Sydney and move the camera
-        /*LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sidney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        LatLng madrid = new LatLng(40.41,-3.69);
-        mMap.addMarker(new MarkerOptions().position(madrid).title("Madrid"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(madrid));*/
         Localizaciones(googleMap);
     }
 
-    public void Localizaciones(GoogleMap googleMap){
+    private void agregarMarcador(double lat, double lng) {
+        LatLng coordenadas = new LatLng(lat, lng);
+        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
+
+        if (marcador != null) marcador.remove();
+        marcador = mMap.addMarker(new MarkerOptions().position(coordenadas).title("Mi ubicación").icon(BitmapDescriptorFactory.fromResource(R.drawable.user)));
+        mMap.animateCamera(miUbicacion);
+
+    }
+
+    private void actUbicacion(Location location) {
+        if (location != null) {
+            lat = location.getLatitude();
+            lng = location.getLongitude();
+            agregarMarcador(lat, lng);
+        }
+    }
+
+    LocationListener locListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            actUbicacion(location);
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
+
+    private void miUbicacion() {
+
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        actUbicacion(location);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1500,0,locListener);
+    }
+
+
+    public void Localizaciones(GoogleMap googleMap) {
         mMap = googleMap;
 
-        final LatLng Retiro = new LatLng(40.4147864,-3.687761);
+        final LatLng Retiro = new LatLng(40.4147864, -3.687761);
         mMap.addMarker(new MarkerOptions().position(Retiro).title("Parque del Retiro"));
-        final LatLng Cibeles = new LatLng(40.4193367,-3.6952712);
+        final LatLng Cibeles = new LatLng(40.4193367, -3.6952712);
         mMap.addMarker(new MarkerOptions().position(Cibeles).title("Fuente de Cibeles"));
-        final LatLng Neptuno = new LatLng(40.4152084,-3.6962812);
+        final LatLng Neptuno = new LatLng(40.4152084, -3.6962812);
         mMap.addMarker(new MarkerOptions().position(Neptuno).title("Fuente de Neptuno"));
-        final LatLng MPrado = new LatLng(40.4137859,-3.6943158);
+        final LatLng MPrado = new LatLng(40.4137859, -3.6943158);
         mMap.addMarker(new MarkerOptions().position(MPrado).title("Museo del Prado"));
-        final LatLng KM0 = new LatLng(40.4166373,-3.7045839);
+        final LatLng KM0 = new LatLng(40.4166373, -3.7045839);
         mMap.addMarker(new MarkerOptions().position(KM0).title("Sol"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(KM0));//Señalar punto carga del mapa
-        final LatLng PlzMayor = new LatLng(40.4153774,-3.7082803);
+        final LatLng PlzMayor = new LatLng(40.4153774, -3.7082803);
         mMap.addMarker(new MarkerOptions().position(PlzMayor).title("Plaza Mayor"));
-        final LatLng PalaReal = new LatLng(40.4179591,-3.7165007);
+        final LatLng PalaReal = new LatLng(40.4179591, -3.7165007);
         mMap.addMarker(new MarkerOptions().position(PalaReal).title("Palacio Real Madrid"));
-        final LatLng TDebod = new LatLng(40.4240257,-3.7199582);
+        final LatLng TDebod = new LatLng(40.4240257, -3.7199582);
         mMap.addMarker(new MarkerOptions().position(TDebod).title("Templo de Debod"));
-        final LatLng PAlcala = new LatLng(40.4199961,-3.6909257);
+        final LatLng PAlcala = new LatLng(40.4199961, -3.6909257);
         mMap.addMarker(new MarkerOptions().position(PAlcala).title("Puerta de Alcalá"));
-        final LatLng PAtracc = new LatLng(40.411865,-3.7522779);
+        final LatLng PAtracc = new LatLng(40.411865, -3.7522779);
         mMap.addMarker(new MarkerOptions().position(PAtracc).title("Parque de Atracciones"));
-
-
 
 
     }

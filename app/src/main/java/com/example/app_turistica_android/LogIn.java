@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 public class LogIn extends AppCompatActivity {
 
     Button btnInicio;
-    ImageButton btnRegistrar;
+    ImageButton btnRegistrar, btninicioGoogle;
     EditText nombre, password;
 
     private ProgressDialog progressDialog;
@@ -51,11 +51,14 @@ public class LogIn extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btninicioGoogle
     }
 
     private void instancias() {
         btnInicio = findViewById(R.id.btnInicio);
         btnRegistrar = findViewById(R.id.btnRegistrar);
+        btninicioGoogle = findViewById(R.id.inicioGoogle);
         nombre = findViewById(R.id.txtcorreo);
         password = findViewById(R.id.txtpassword);
 

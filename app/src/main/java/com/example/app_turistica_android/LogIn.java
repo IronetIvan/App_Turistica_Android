@@ -52,7 +52,7 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
-        btninicioGoogle
+        //btninicioGoogle
     }
 
     private void instancias() {

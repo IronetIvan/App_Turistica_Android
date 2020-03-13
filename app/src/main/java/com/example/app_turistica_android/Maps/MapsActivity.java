@@ -91,6 +91,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(PalaReal).title("Palacio Real Madrid"));
         final LatLng TDebod = new LatLng(40.4240257,-3.7199582);
         mMap.addMarker(new MarkerOptions().position(TDebod).title("Templo de Debod"));
+        final LatLng PAlcala = new LatLng(40.4199961,-3.6909257);
+        mMap.addMarker(new MarkerOptions().position(PAlcala).title("Puerta de Alcalá"));
+        final LatLng PAtracc = new LatLng(40.411865,-3.7522779);
+        mMap.addMarker(new MarkerOptions().position(PAtracc).title("Parque de Atracciones"));
 
 
 

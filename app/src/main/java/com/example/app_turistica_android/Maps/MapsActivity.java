@@ -81,7 +81,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
 
         if (marcador != null) marcador.remove();
-        marcador = mMap.addMarker(new MarkerOptions().position(coordenadas).title("Mi ubicación").icon(BitmapDescriptorFactory.fromResource(R.drawable.user)));
+        marcador = mMap.addMarker(new MarkerOptions().position(coordenadas).title("Mi ubicación").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)));
         mMap.animateCamera(miUbicacion);
 
     }

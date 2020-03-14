@@ -83,7 +83,7 @@ public class LogIn extends AppCompatActivity {
             return;
         }
 
-        progressDialog.setMessage("Limpiando la cancha...");
+        progressDialog.setMessage("Iniciando sesion...");
         progressDialog.show();
 
         //loguear usuario

@@ -145,6 +145,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(PAlcala).title("Puerta de Alcalá"));
         final LatLng PAtracc = new LatLng( 40.411917, -3.750087 );
         mMap.addMarker(new MarkerOptions().position(PAtracc).title("Parque de Atracciones"));
+        final LatLng CBellasArtes = new LatLng(  40.418336, -3.696545  );
+        mMap.addMarker(new MarkerOptions().position(CBellasArtes).title("Círculo de Bellas Artes"));
+        final LatLng MReianSofia = new LatLng(   40.407998, -3.694515  );
+        mMap.addMarker(new MarkerOptions().position(MReianSofia).title("Museo Reina Sofia"));
+        final LatLng mTyssen = new LatLng(    40.416026, -3.694930   );
+        mMap.addMarker(new MarkerOptions().position(mTyssen).title("Museo Thyssen-Bornemisza"));
+        final LatLng GranVia = new LatLng(     40.420278, -3.705495   );
+        mMap.addMarker(new MarkerOptions().position(GranVia).title("Gran Vía"));
+        final LatLng PlzEspana = new LatLng(      40.423402, -3.712172    );
+        mMap.addMarker(new MarkerOptions().position(PlzEspana).title("Plaza de España"));
+        final LatLng Lavapies = new LatLng(       40.408866, -3.701124    );
+        mMap.addMarker(new MarkerOptions().position(Lavapies).title("Barrio de Lavapies"));
+        final LatLng Matadero = new LatLng(        40.391633, -3.697514    );
+        mMap.addMarker(new MarkerOptions().position(Matadero).title("Matadero de Madrid"));
+        final LatLng MRio = new LatLng(        40.397388, -3.709733   );
+        mMap.addMarker(new MarkerOptions().position(MRio).title("Madrid Río"));
+        final LatLng P7tetas = new LatLng(         40.396989, -3.655977    );
+        mMap.addMarker(new MarkerOptions().position(P7tetas).title("Parque 7 Tetas"));
+        final LatLng PlzCastilla = new LatLng(          40.465849, -3.689517   );
+        mMap.addMarker(new MarkerOptions().position(PlzCastilla).title("Plaza Castilla"));
+        final LatLng torresKio = new LatLng(          40.466936, -3.688501     );
+        mMap.addMarker(new MarkerOptions().position(torresKio).title("Torres Kio"));
+        final LatLng CuatroTorres = new LatLng(          40.476376, -3.687764    );
+        mMap.addMarker(new MarkerOptions().position(CuatroTorres).title("Cuatro Torres"));
+
+
+
+
 
 
     }

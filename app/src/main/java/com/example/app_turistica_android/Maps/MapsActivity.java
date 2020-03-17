@@ -169,6 +169,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(torresKio).title("Torres Kio"));
         final LatLng CuatroTorres = new LatLng(          40.476376, -3.687764    );
         mMap.addMarker(new MarkerOptions().position(CuatroTorres).title("Cuatro Torres"));
+        final LatLng MCera = new LatLng(           40.425145, -3.691336    );
+        mMap.addMarker(new MarkerOptions().position(MCera).title("Museo de cera"));
+        final LatLng PlzColon = new LatLng(       40.424817, -3.689113   );
+        mMap.addMarker(new MarkerOptions().position(PlzColon).title("Plaza de Colón"));
+        final LatLng Ventas = new LatLng(   40.432270, -3.663737 );
+        mMap.addMarker(new MarkerOptions().position(Ventas).title("Plaza de Toros Las Ventas"));
+        final LatLng Bernabeu = new LatLng(    40.452992, -3.688404 );
+        mMap.addMarker(new MarkerOptions().position(Bernabeu).title("Santiago Bernabéu"));
+
 
 
 

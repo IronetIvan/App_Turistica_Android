@@ -1,5 +1,6 @@
 package com.example.app_turistica_android.Maps;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
@@ -10,10 +11,12 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.app_turistica_android.R;
 import com.google.android.gms.maps.CameraUpdate;
@@ -26,6 +29,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -35,16 +39,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double lat = 0.0;
     double lng = 0.0;
 
+    BottomNavigationView botonNavegacion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        instancias();
+        acciones();
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        btnTypeSatelite = (Button) findViewById(R.id.btnSatelite);
-        btnTypeHybrid = (Button) findViewById(R.id.btnHybrid);
+
+
+    }
+
+    private void acciones() {
         btnTypeSatelite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +69,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             }
         });
+
+        botonNavegacion.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                //Dentro de cada IF deberia poder mostrarse la opcion seleccionada (si es parque, que solo muestre parques)
+
+                if (item.getItemId() == R.id.museo){
+                    Toast.makeText(MapsActivity.this, "Muestra en el mapa los museos", Toast.LENGTH_LONG).show();
+                }
+                if (item.getItemId() == R.id.parque){
+                    Toast.makeText(MapsActivity.this, "Muestra en el mapa los parques", Toast.LENGTH_LONG).show();
+                }
+                if (item.getItemId() == R.id.bares){
+                    Toast.makeText(MapsActivity.this, "Muestra en el mapa los bares y restaurantes", Toast.LENGTH_LONG).show();
+                }
+
+                return true;
+            }
+        });
+    }
+
+    private void instancias() {
+        btnTypeSatelite = findViewById(R.id.btnSatelite);
+        btnTypeHybrid = findViewById(R.id.btnHybrid);
+        botonNavegacion = findViewById(R.id.navegacion);
     }
 
 
@@ -177,12 +215,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(Ventas).title("Plaza de Toros Las Ventas"));
         final LatLng Bernabeu = new LatLng(    40.452992, -3.688404 );
         mMap.addMarker(new MarkerOptions().position(Bernabeu).title("Santiago Bernabéu"));
-
-
-
-
-
-
 
     }
 }

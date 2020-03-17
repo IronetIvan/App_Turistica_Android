@@ -29,4 +29,7 @@
         android:text="Hibrido"
         android:layout_below="@+id/btnSatelite"/>
 
+    <include layout="@layout/barra_menu"/>
+
+
 </RelativeLayout>

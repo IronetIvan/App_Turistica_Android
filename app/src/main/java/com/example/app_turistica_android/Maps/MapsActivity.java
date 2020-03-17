@@ -135,7 +135,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(Neptuno).title("Fuente de Neptuno"));
         final LatLng MPrado = new LatLng( 40.414072, -3.692334 );
         mMap.addMarker(new MarkerOptions().position(MPrado).title("Museo del Prado"));
-
         final LatLng PlzMayor = new LatLng( 40.415560, -3.707426 );
         mMap.addMarker(new MarkerOptions().position(PlzMayor).title("Plaza Mayor"));
         final LatLng PalaReal = new LatLng( 40.418134, -3.714430 );

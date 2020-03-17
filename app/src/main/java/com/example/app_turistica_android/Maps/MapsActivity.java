@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Camera;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -59,21 +60,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         miUbicacion();
-
         Localizaciones(googleMap);
+        final LatLng KM0 = new LatLng( 40.416671, -3.703817 );
+        mMap.addMarker(new MarkerOptions().position(KM0).title("Sol"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(KM0));//Señalar punto carga del mapa
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(KM0,18),5000,null);//Zoom en un punto a la hora de cargar
     }
 
     private void agregarMarcador(double lat, double lng) {
@@ -98,6 +93,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public void onLocationChanged(Location location) {
             actUbicacion(location);
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),12.0f));
         }
 
         @Override
@@ -139,9 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(Neptuno).title("Fuente de Neptuno"));
         final LatLng MPrado = new LatLng( 40.414072, -3.692334 );
         mMap.addMarker(new MarkerOptions().position(MPrado).title("Museo del Prado"));
-        final LatLng KM0 = new LatLng( 40.416671, -3.703817 );
-        mMap.addMarker(new MarkerOptions().position(KM0).title("Sol"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(KM0));//Señalar punto carga del mapa
+
         final LatLng PlzMayor = new LatLng( 40.415560, -3.707426 );
         mMap.addMarker(new MarkerOptions().position(PlzMayor).title("Plaza Mayor"));
         final LatLng PalaReal = new LatLng( 40.418134, -3.714430 );

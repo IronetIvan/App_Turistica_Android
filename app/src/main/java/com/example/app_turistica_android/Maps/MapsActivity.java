@@ -131,11 +131,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void Localizaciones(GoogleMap googleMap) {
         mMap = googleMap;
 
-        final LatLng Retiro = new LatLng(40.4147864, -3.687761);
+        final LatLng Retiro = new LatLng( 40.415427, -3.684490 );
         mMap.addMarker(new MarkerOptions().position(Retiro).title("Parque del Retiro"));
-        final LatLng Cibeles = new LatLng(40.4193367, -3.6952712);
+        final LatLng Cibeles = new LatLng(40.419397, -3.693186);
         mMap.addMarker(new MarkerOptions().position(Cibeles).title("Fuente de Cibeles"));
-        final LatLng Neptuno = new LatLng(40.4152084, -3.6962812);
+        final LatLng Neptuno = new LatLng( 40.415226, -3.694086 );
         mMap.addMarker(new MarkerOptions().position(Neptuno).title("Fuente de Neptuno"));
         final LatLng MPrado = new LatLng(40.4137859, -3.6943158);
         mMap.addMarker(new MarkerOptions().position(MPrado).title("Museo del Prado"));

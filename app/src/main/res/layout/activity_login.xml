@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/google"
                     android:background="#d8000000"
-                    android:id="@+id/inicioGoogle"/>
+                    android:id="@+id/btninicioGoogle"/>
 
                 <ImageButton
                     android:layout_width="wrap_content"

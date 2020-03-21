@@ -52,13 +52,19 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
-        //btninicioGoogle
+
+        btninicioGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void instancias() {
         btnInicio = findViewById(R.id.btnInicio);
         btnRegistrar = findViewById(R.id.btnRegistrar);
-        btninicioGoogle = findViewById(R.id.inicioGoogle);
+        btninicioGoogle = findViewById(R.id.btninicioGoogle);
         nombre = findViewById(R.id.txtcorreo);
         password = findViewById(R.id.txtpassword);
 

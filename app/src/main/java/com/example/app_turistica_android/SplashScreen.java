@@ -7,10 +7,14 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+import com.google.firebase.perf.FirebasePerformance;
+import com.google.firebase.perf.metrics.Trace;
+
 
 public class SplashScreen extends AppCompatActivity {
 
     private final int duracion = 4000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

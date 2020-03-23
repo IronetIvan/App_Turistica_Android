@@ -22,8 +22,8 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class LogIn extends AppCompatActivity {
 
-    Button btnInicio;
-    ImageButton btnRegistrar, btninicioGoogle;
+    Button btnInicio,btnInvitado;
+    ImageButton btnRegistrar, btninicioGoogle ;
     EditText nombre, password;
 
     private ProgressDialog progressDialog;
@@ -59,6 +59,14 @@ public class LogIn extends AppCompatActivity {
 
             }
         });
+
+        btnInvitado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogIn.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void instancias() {
@@ -67,7 +75,7 @@ public class LogIn extends AppCompatActivity {
         btninicioGoogle = findViewById(R.id.btninicioGoogle);
         nombre = findViewById(R.id.txtcorreo);
         password = findViewById(R.id.txtpassword);
-
+        btnInvitado= findViewById(R.id.btnInvitado);
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
     }

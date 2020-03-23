@@ -6,11 +6,11 @@
         android:icon="@drawable/museo"/>
 
     <item android:id="@+id/parque"
-        android:title="Parqus"
+        android:title="Parques"
         android:icon="@drawable/parque"/>
 
     <item android:id="@+id/bares"
         android:title="Bares y Restaurantes"
-        android:icon="@drawable/cerveza"/>
+        android:icon="@drawable/food"/>
 
 </menu>

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.8"
-        android:src="@drawable/adduser"
+        android:src="@drawable/star"
         android:layout_margin="30dp"
         />
 
@@ -20,7 +20,7 @@
         android:textSize="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pantalla de explicación"
+        android:text="Cualquier lugar que visite podrá ser marcado como favorito para usted, y además podra escribir reseñas de todas sus visitas con su propia cuenta de usuario."
         android:layout_weight="0.2"
         android:layout_gravity="center_vertical|center_horizontal"
         android:gravity="top|center_horizontal"/>

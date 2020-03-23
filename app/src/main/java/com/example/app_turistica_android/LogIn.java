@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.app_turistica_android.Explicacion.OnBoardActivity;
 import com.example.app_turistica_android.Maps.MapsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -63,7 +64,7 @@ public class LogIn extends AppCompatActivity {
         btnInvitado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LogIn.this, MapsActivity.class);
+                Intent intent = new Intent(LogIn.this, OnBoardActivity.class);
                 startActivity(intent);
             }
         });

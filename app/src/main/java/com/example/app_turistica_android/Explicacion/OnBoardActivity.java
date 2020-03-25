@@ -5,12 +5,14 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import android.animation.ArgbEvaluator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.app_turistica_android.Maps.MapsActivity;
 import com.example.app_turistica_android.R;
 
 import java.util.ArrayList;
@@ -103,6 +105,8 @@ public class OnBoardActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.btn_finish:
                 finish();
+                Intent intent = new Intent(OnBoardActivity.this, MapsActivity.class);
+                startActivity(intent);
                 break;
         }
     }

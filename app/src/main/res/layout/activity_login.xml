@@ -104,7 +104,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
-                android:background="#0F0F0F"
+                android:background="@drawable/button_rounded"
                 android:text="Entrar como invitado"
                 android:elevation="15dp"
                 android:layout_marginBottom="30dp"

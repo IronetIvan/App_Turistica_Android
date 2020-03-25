@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.app_turistica_android.Explicacion.OnBoardActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -81,7 +82,7 @@ public class Registro extends AppCompatActivity {
             public void onClick(View v) {
                 registarUsuarios();
                 vaciarCampos();
-                Intent intent = new Intent(Registro.this, LogIn.class);
+                Intent intent = new Intent(Registro.this, OnBoardActivity.class);
                 startActivity(intent);
             }
         });

@@ -85,10 +85,19 @@ public class Registro extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
+                /*boolean validarOk= true;
+                if(validarOk == true){
+
+                }else if(validarOk == false){
+
+                }*/
+
                 registarUsuarios();
                 vaciarCampos();
                 Intent intent = new Intent(Registro.this, OnBoardActivity.class);
                 startActivity(intent);
+
             }
         });
 

@@ -61,6 +61,7 @@ public class Registro extends AppCompatActivity {
         }
         if(contrseña != confirContra){
             Toast.makeText(this,"Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         progressDialog.setMessage("Realizando registro en linea...");

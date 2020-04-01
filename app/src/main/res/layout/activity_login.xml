@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/splash2"
+        android:src="@drawable/fondo"
         android:scaleType="centerCrop"/>
 
     <LinearLayout
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="15dp">
 
             <Button
                 android:id="@+id/btnInicio"
@@ -70,6 +70,19 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/button_rounded"
                 android:text="Iniciar Sesion"
+                android:elevation="15dp"
+                android:layout_marginBottom="30dp"
+                android:textSize="16dp"/>
+
+            <Button
+                android:id="@+id/btnInvitado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/button_rounded"
+                android:text="Entrar como invitado"
                 android:elevation="15dp"
                 android:layout_marginBottom="30dp"
                 android:textSize="16dp"/>
@@ -97,18 +110,7 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnInvitado"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/button_rounded"
-                android:text="Entrar como invitado"
-                android:elevation="15dp"
-                android:layout_marginBottom="30dp"
-                android:textSize="16dp"/>
+
 
         </LinearLayout>
 

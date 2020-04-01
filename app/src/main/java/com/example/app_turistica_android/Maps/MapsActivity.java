@@ -76,14 +76,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 //Dentro de cada IF deberia poder mostrarse la opcion seleccionada (si es parque, que solo muestre parques)
 
-                if (item.getItemId() == R.id.museo){
-                    Toast.makeText(MapsActivity.this, "Muestra en el mapa los museos", Toast.LENGTH_LONG).show();
+                if (item.getItemId() == R.id.mapas){
+                    Toast.makeText(MapsActivity.this, "Muestra el Fragment con el mapa", Toast.LENGTH_LONG).show();
                 }
-                if (item.getItemId() == R.id.parque){
-                    Toast.makeText(MapsActivity.this, "Muestra en el mapa los parques", Toast.LENGTH_LONG).show();
+                if (item.getItemId() == R.id.lugares){
+                    Toast.makeText(MapsActivity.this, "Muestra un listado con los lugares que sube la gente", Toast.LENGTH_LONG).show();
                 }
-                if (item.getItemId() == R.id.bares){
-                    Toast.makeText(MapsActivity.this, "Muestra en el mapa los bares y restaurantes", Toast.LENGTH_LONG).show();
+                if (item.getItemId() == R.id.addruta){
+                    Toast.makeText(MapsActivity.this, "Pantalla para agregar una ruta", Toast.LENGTH_LONG).show();
+                }
+                if (item.getItemId() == R.id.perfilusuario){
+                    Toast.makeText(MapsActivity.this, "Listado del usuario con opciones como (nombre de usuario, rutas, favoritos, cambiar email/password", Toast.LENGTH_LONG).show();
                 }
 
                 return true;

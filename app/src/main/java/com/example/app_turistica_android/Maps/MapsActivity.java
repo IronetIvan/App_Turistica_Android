@@ -110,6 +110,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(KM0).title("Sol"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(KM0));//Señalar punto carga del mapa
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(KM0,18),5000,null);//Zoom en un punto a la hora de cargar
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() { //Creamos marcas FAV del usuario Click largo
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.recommended)).anchor(0.0f,1.0f).position(latLng));
+            }
+        });
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() { //hacer click en ubicación del mapa
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Toast.makeText(getApplicationContext(),"Hemos pulsado una ubicación",Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
     }
 
     private void agregarMarcador(double lat, double lng) {

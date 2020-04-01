@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Registro extends AppCompatActivity {
 
-    EditText txtApellido, txtCorreo, txtPassword;
+    EditText txtApellido, txtCorreo, txtPassword,txtConfirPassword;
     Button btnRegsitrarse;
     private static final String TAG = "MainActivity";
     private FirebaseAuth firebaseAuth;
@@ -39,6 +39,7 @@ public class Registro extends AppCompatActivity {
         txtCorreo = findViewById(R.id.txtNombre);
         txtApellido = findViewById(R.id.editText5);
         txtPassword = findViewById(R.id.editText7);
+        txtConfirPassword = findViewById(R.id.editext8);
         btnRegsitrarse = findViewById(R.id.btnRegistrar);
         firebaseAuth = firebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -47,6 +48,7 @@ public class Registro extends AppCompatActivity {
     private void registarUsuarios() {
         String email = txtCorreo.getText().toString().trim();
         String contrseña = txtPassword.getText().toString().trim();
+        String confirContra = txtConfirPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Se debe ingresar un usuario", Toast.LENGTH_SHORT).show();
@@ -55,6 +57,10 @@ public class Registro extends AppCompatActivity {
 
         if (TextUtils.isEmpty(contrseña)) {
             Toast.makeText(this, "Se debe ingresar una contraseña", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(contrseña != confirContra){
+            Toast.makeText(this,"Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -80,10 +86,19 @@ public class Registro extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
+                /*boolean validarOk= true;
+                if(validarOk == true){
+
+                }else if(validarOk == false){
+
+                }*/
+
                 registarUsuarios();
                 vaciarCampos();
                 Intent intent = new Intent(Registro.this, OnBoardActivity.class);
                 startActivity(intent);
+
             }
         });
 
@@ -92,6 +107,7 @@ public class Registro extends AppCompatActivity {
     public void vaciarCampos() {
         txtCorreo.setText("");
         txtPassword.setText("");
+        txtConfirPassword.setText("");
         txtApellido.setText("");
 
     }

@@ -43,7 +43,6 @@
         android:drawablePadding="10dp"/>
 
     <include layout="@layout/barra_menu"/>
-    <include layout="@layout/barra_menu"/>
 
     <LinearLayout
         android:layout_width="match_parent"

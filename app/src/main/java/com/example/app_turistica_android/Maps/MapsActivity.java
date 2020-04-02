@@ -1,12 +1,13 @@
 package com.example.app_turistica_android.Maps;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.Camera;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,9 +15,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
+
 
 import com.example.app_turistica_android.R;
 import com.google.android.gms.maps.CameraUpdate;
@@ -24,7 +24,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -40,6 +39,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double lng = 0.0;
 
     BottomNavigationView botonNavegacion;
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                //Dentro de cada IF deberia poder mostrarse la opcion seleccionada (si es parque, que solo muestre parques)
 
                 if (item.getItemId() == R.id.mapas){
                     Toast.makeText(MapsActivity.this, "Muestra el Fragment con el mapa", Toast.LENGTH_LONG).show();
@@ -98,6 +98,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btnTypeSatelite = findViewById(R.id.btnSatelite);
         btnTypeHybrid = findViewById(R.id.btnHybrid);
         botonNavegacion = findViewById(R.id.navegacion);
+
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.menu_superior);
     }
 
 

@@ -12,7 +12,7 @@
         android:layout_height="220dp"
         android:layout_margin="30dp"
         android:layout_weight="0.8"
-        android:src="@drawable/star"
+        android:src="@drawable/recommended"
         android:layout_gravity="center"/>
 
     <TextView

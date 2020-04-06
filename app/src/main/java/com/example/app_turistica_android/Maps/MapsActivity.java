@@ -11,6 +11,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
@@ -27,6 +28,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+import com.example.app_turistica_android.AdaptadorUbicaciones.AdaptadorRecycler;
 import com.example.app_turistica_android.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -134,6 +136,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() { //hacer click en ubicación del mapa
             @Override
             public boolean onMarkerClick(Marker marker) {
+                //Intent intent = new Intent(MapsActivity.this, AdaptadorRecycler.class);
+                //startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Hemos pulsado una ubicación", Toast.LENGTH_SHORT).show();
                 return false;
             }

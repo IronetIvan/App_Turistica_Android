@@ -59,10 +59,10 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this, "Se debe ingresar una contraseña", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(contrseña != confirContra){
+        /*if(contrseña != confirContra){
             Toast.makeText(this,"Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-            return;
-        }
+            return; validar contraseña repetidas
+        }*/
 
         progressDialog.setMessage("Realizando registro en linea...");
         progressDialog.show();

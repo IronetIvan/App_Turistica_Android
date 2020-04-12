@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,9 +19,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Registro extends AppCompatActivity {
 
-    EditText txtApellido, txtCorreo, txtPassword,txtConfirPassword;
+    EditText txtApellido, txtCorreo, txtPassword, txtConfirPassword;
     Button btnRegsitrarse;
     private static final String TAG = "MainActivity";
     private FirebaseAuth firebaseAuth;
@@ -112,5 +116,14 @@ public class Registro extends AppCompatActivity {
 
     }
 
+   /* /*public void validarCampos(){
 
+        Pattern pattern;
+        Matcher matcher;
+
+        if(){
+            pattern = Pattern.compile("^(([A-Z]\\d{8})|(\\d{8}[A-Z]))$");
+            matcher = pattern.matcher(txtCorreo.getText());
+        }*/
 }
+

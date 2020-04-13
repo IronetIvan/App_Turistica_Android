@@ -24,7 +24,7 @@ public class DetalleLugar extends AppCompatActivity {
 
     private void recuperarDatos() {
         Lugares lRecuperado = null;
-        //lRecuperado = (Lugares) getIntent().getExtras().get(CochesActivityRecycler.TAG1);
+        //lRecuperado = (Lugares) getIntent().getExtras().get(CochesActivityRecycler.TAG1); llamar al AppCompatActivity de LugaresActivityRecycler (Sin crear)
         //cRecuperado = getIntent().getExtras().get(CochesActivityRecycler.TAG1);//Error coger TAG
         imagen.setImageResource(lRecuperado.getImagen());
         txtNombre.setText(lRecuperado.getNombre());

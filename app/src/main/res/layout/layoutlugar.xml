@@ -18,7 +18,6 @@
         android:text="hola"
         android:layout_gravity="center"
         android:gravity="center"
-
         android:id="@+id/descripcion"
         android:textSize="18sp"/>
 

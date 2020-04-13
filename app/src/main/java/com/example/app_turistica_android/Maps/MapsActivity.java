@@ -29,6 +29,9 @@ import android.widget.Toast;
 
 
 import com.example.app_turistica_android.AdaptadorUbicaciones.AdaptadorRecycler;
+import com.example.app_turistica_android.EditPerfil;
+import com.example.app_turistica_android.Explicacion.OnBoardActivity;
+import com.example.app_turistica_android.LogIn;
 import com.example.app_turistica_android.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -99,7 +102,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Toast.makeText(MapsActivity.this, "Pantalla para agregar una ruta", Toast.LENGTH_LONG).show();
                 }
                 if (item.getItemId() == R.id.perfilusuario) {
-                    Toast.makeText(MapsActivity.this, "Listado del usuario con opciones como (nombre de usuario, rutas, favoritos, cambiar email/password", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MapsActivity.this, EditPerfil.class);
+                    startActivity(intent);
+                    //Toast.makeText(MapsActivity.this, "Listado del usuario con opciones como (nombre de usuario, rutas, favoritos, cambiar email/password", Toast.LENGTH_LONG).show();
                 }
 
                 return true;

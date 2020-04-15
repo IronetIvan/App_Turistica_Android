@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "917932034533-vofg5043d63nri3un2qv0dhbkdkp0tm4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.app_turistica_android",
+            "certificate_hash": "5ef2804f72215ae38ba94d4bb4060d8e69ac3d2e"
+          }
+        },
+        {
+          "client_id": "917932034533-ukqnktq7almdg9hlimokel4hepm2g9tu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.app_turistica_android",
+            "certificate_hash": "c85b5207fa221b7832ddd0799b17f9e39e48671f"
+          }
+        },
+        {
           "client_id": "917932034533-oei1dihbvna8mpfeqffl0o7d1b1qvg1i.apps.googleusercontent.com",
           "client_type": 3
         }

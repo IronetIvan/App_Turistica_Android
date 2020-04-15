@@ -36,6 +36,7 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         instancias();
         acciones();
+
     }
 
     private void acciones() {

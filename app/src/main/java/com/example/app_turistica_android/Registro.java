@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 
 public class Registro extends AppCompatActivity {
 
-    EditText txtApellido, txtCorreo, txtPassword, txtConfirPassword;
+    EditText txtNombreUsuario, txtCorreo, txtPassword, txtConfirPassword;
     Button btnRegsitrarse;
     private static final String TAG = "MainActivity";
     private FirebaseAuth firebaseAuth;
@@ -41,7 +41,7 @@ public class Registro extends AppCompatActivity {
 
     private void instancias() {
         txtCorreo = findViewById(R.id.txtNombre);
-        txtApellido = findViewById(R.id.editText5);
+        txtNombreUsuario = findViewById(R.id.editText5);
         txtPassword = findViewById(R.id.editText7);
         txtConfirPassword = findViewById(R.id.editext8);
         btnRegsitrarse = findViewById(R.id.btnRegistrar);
@@ -112,7 +112,7 @@ public class Registro extends AppCompatActivity {
         txtCorreo.setText("");
         txtPassword.setText("");
         txtConfirPassword.setText("");
-        txtApellido.setText("");
+        txtNombreUsuario.setText("");
 
     }
 

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_turistica_android.Explicacion.OnBoardActivity;
+import com.example.app_turistica_android.utils.Usuarios;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,6 +25,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class EditPerfil extends AppCompatActivity {
     TextView txtCorreo;
@@ -48,21 +53,35 @@ public class EditPerfil extends AppCompatActivity {
         txtPassword = findViewById(R.id.editText7);
         txtConfirPassword = findViewById(R.id.editext8);
         btnGuardar = findViewById(R.id.btnGuardar);
+        myRef = FirebaseDatabase.getInstance().getReference("Usuarios");
         //firebaseAuth = firebaseAuth.getInstance();
         //database = FirebaseDatabase.getInstance();
-        myRef = FirebaseDatabase.getInstance().getReference();
+
     }
 
     private void traerDatos(){
 
-        myRef.child("usuario").addValueEventListener(new ValueEventListener() {
+        myRef.child("usuarios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
+
+
                     String correo = dataSnapshot.child("email").getValue().toString();
                     String usuario = dataSnapshot.child("nombre_usuario").getValue().toString();
                     txtCorreo.setText(correo);
                     txtUsuario.setText(usuario);
+
+
+
+                    /*for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                        Usuarios user = dataSnapshot.getValue(Usuarios.class);
+                        String nombreUsuario = user.getNombre_usuario();
+
+                        Log.e("Nombre usuario",""+ nombreUsuario);
+                    }*/
+
                 }
             }
 
@@ -83,13 +102,11 @@ public class EditPerfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                /*boolean validarOk= true;
-                if(validarOk == true){
+                String usuario = txtUsuario.getText().toString();
+                String password = txtPassword.getText().toString();
+                String confirPassword = txtConfirPassword.getText().toString();
 
-                }else if(validarOk == false){
-
-                }*/
-
+                ActPerfil(usuario);
 
 
                 //Intent intent = new Intent(EditPerfil.this, OnBoardActivity.class);
@@ -98,6 +115,15 @@ public class EditPerfil extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void ActPerfil(String usuario) {
+        Map<String, Object> datosAct = new HashMap<>();
+        datosAct.put("usuario", usuario);
+        //datosAct.put("password", password);
+        //datosAct.put("confirPasword", confirPassword);
+
+        myRef.child("Usuarios").push().setValue(datosAct);
     }
 }
 

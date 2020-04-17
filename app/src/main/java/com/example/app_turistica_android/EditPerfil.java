@@ -36,7 +36,8 @@ public class EditPerfil extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     //private FirebaseAuth firebaseAuth;
     //private FirebaseDatabase database;
-    private DatabaseReference myRef;
+    //DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class EditPerfil extends AppCompatActivity {
         instancias();
         acciones();
         traerDatos();
+        //actDatos();
     }
 
     private void instancias() {
@@ -53,7 +55,7 @@ public class EditPerfil extends AppCompatActivity {
         txtPassword = findViewById(R.id.editText7);
         txtConfirPassword = findViewById(R.id.editext8);
         btnGuardar = findViewById(R.id.btnGuardar);
-        myRef = FirebaseDatabase.getInstance().getReference("Usuarios");
+        myRef = FirebaseDatabase.getInstance().getReference();
         //firebaseAuth = firebaseAuth.getInstance();
         //database = FirebaseDatabase.getInstance();
 
@@ -61,16 +63,22 @@ public class EditPerfil extends AppCompatActivity {
 
     private void traerDatos(){
 
-        myRef.child("usuarios").addValueEventListener(new ValueEventListener() {
+        myRef.child("usuarios").child("LNp8sYdWfzQRJmC6tdjsSW8PReA3").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+
+                //String value = dataSnapshot.getValue(String.class);
+                //txtCorreo.setText(value);
+
+                if (dataSnapshot.exists()) {
 
 
-                    String correo = dataSnapshot.child("email").getValue().toString();
-                    String usuario = dataSnapshot.child("nombre_usuario").getValue().toString();
+                    String correo = dataSnapshot.child("correo").getValue().toString();
+                    String usuario = dataSnapshot.child("usuario").getValue().toString();
+                    String contraseña = dataSnapshot.child("contraseña").getValue().toString();
                     txtCorreo.setText(correo);
-                    txtUsuario.setText(usuario);
+                    txtUsuario.setText("Nombre usuario"+" "+usuario);
+                    txtPassword.setText(contraseña);
 
 
 
@@ -81,6 +89,7 @@ public class EditPerfil extends AppCompatActivity {
 
                         Log.e("Nombre usuario",""+ nombreUsuario);
                     }*/
+
 
                 }
             }
@@ -94,6 +103,16 @@ public class EditPerfil extends AppCompatActivity {
 
     }
 
+    /*public void actDatos(){
+        String nombreUsuario = txtUsuario.getText().toString();
+        String passwd = txtPassword.getText().toString();
+        myRef.setValue(nombreUsuario);
+        myRef.setValue(passwd);
+
+        txtUsuario.setText("");
+        txtPassword.setText("");
+    }*/
+
 
 
     private void acciones() {
@@ -102,11 +121,9 @@ public class EditPerfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String usuario = txtUsuario.getText().toString();
-                String password = txtPassword.getText().toString();
-                String confirPassword = txtConfirPassword.getText().toString();
+                //actDatos();
 
-                ActPerfil(usuario);
+                //ActPerfil();
 
 
                 //Intent intent = new Intent(EditPerfil.this, OnBoardActivity.class);
@@ -117,13 +134,13 @@ public class EditPerfil extends AppCompatActivity {
 
     }
 
-    private void ActPerfil(String usuario) {
+    private void ActPerfil() {
         Map<String, Object> datosAct = new HashMap<>();
-        datosAct.put("usuario", usuario);
-        //datosAct.put("password", password);
+        datosAct.put("usuario",txtUsuario);
+        datosAct.put("contraseña", txtPassword);
         //datosAct.put("confirPasword", confirPassword);
 
-        myRef.child("Usuarios").push().setValue(datosAct);
+        myRef.child("usuarios").child("LNp8sYdWfzQRJmC6tdjsSW8PReA3").updateChildren(datosAct);
     }
 }
 

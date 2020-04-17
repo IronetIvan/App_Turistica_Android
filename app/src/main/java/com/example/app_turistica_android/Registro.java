@@ -94,7 +94,7 @@ public class Registro extends AppCompatActivity {
                 if(validarEmail(txtCorreo) == true){
                     registarUsuarios();
                     vaciarCampos();
-                    Intent intent = new Intent(Registro.this, OnBoardActivity.class);
+                    Intent intent = new Intent(Registro.this, LogIn.class);
                     startActivity(intent);
                 }
 
@@ -117,10 +117,9 @@ public class Registro extends AppCompatActivity {
        String emailInput = email.getText().toString();
 
        if (!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
-            Toast.makeText(this, "Email Valido", Toast.LENGTH_SHORT).show();
             return true;
        } else{
-           Toast.makeText(this, "No es posible registrar la direccion de email", Toast.LENGTH_SHORT).show();
+           Toast.makeText(this, "El email introducido no es valido", Toast.LENGTH_SHORT).show();
            return false;
        }
 

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -90,18 +91,13 @@ public class Registro extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                if(validarEmail(txtCorreo) == true){
+                    registarUsuarios();
+                    vaciarCampos();
+                    Intent intent = new Intent(Registro.this, OnBoardActivity.class);
+                    startActivity(intent);
+                }
 
-                /*boolean validarOk= true;
-                if(validarOk == true){
-
-                }else if(validarOk == false){
-
-                }*/
-
-                registarUsuarios();
-                vaciarCampos();
-                Intent intent = new Intent(Registro.this, OnBoardActivity.class);
-                startActivity(intent);
 
             }
         });
@@ -116,15 +112,19 @@ public class Registro extends AppCompatActivity {
 
     }
 
-   /* /*public void validarCampos(){
+   private boolean validarEmail(EditText email) {
 
-        Pattern pattern;
-        Matcher matcher;
+       String emailInput = email.getText().toString();
 
-        if(){
-            pattern = Pattern.compile("^(([A-Z]\\d{8})|(\\d{8}[A-Z]))$");
-            matcher = pattern.matcher(txtCorreo.getText());
-        }*/
+       if (!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
+            Toast.makeText(this, "Email Valido", Toast.LENGTH_SHORT).show();
+            return true;
+       } else{
+           Toast.makeText(this, "No es posible registrar la direccion de email", Toast.LENGTH_SHORT).show();
+           return false;
+       }
+
+   }
 }
 
 

@@ -114,12 +114,17 @@ public class Registro extends AppCompatActivity {
 
    private boolean validarEmail(EditText email) {
 
+        //Revisar condiciones
+
        String emailInput = email.getText().toString();
 
        if (!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
             return true;
-       } else{
+       } else if (!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
            Toast.makeText(this, "El email introducido no es valido", Toast.LENGTH_SHORT).show();
+           return false;
+       } else {
+           Toast.makeText(this, "El email esta vacio", Toast.LENGTH_SHORT).show();
            return false;
        }
 

@@ -3,18 +3,16 @@
 
     <item android:id="@+id/museos"
         android:title="Museos"
-        android:icon="@drawable/lugar"/>
+        android:drawableLeft="@drawable/lugar"/>
 
     <item android:id="@+id/parques"
-        android:title="Parques"
-        android:icon="@drawable/lugar"/>
+        android:title="Parques"/>
 
     <item android:id="@+id/restaurantes"
         android:title="Bares y Restaurantes"
-        android:icon="@drawable/lugar"/>
+        />
 
     <item android:id="@+id/lugaresemblematicos"
-        android:title="Lugares Emblematicos"
-        android:icon="@drawable/lugar"/>
+        android:title="Lugares Emblematicos"/>
 
 </menu>

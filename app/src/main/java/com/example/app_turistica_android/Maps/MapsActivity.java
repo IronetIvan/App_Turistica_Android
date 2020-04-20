@@ -32,6 +32,7 @@ import com.example.app_turistica_android.AdaptadorUbicaciones.AdaptadorRecycler;
 import com.example.app_turistica_android.EditPerfil;
 import com.example.app_turistica_android.Explicacion.OnBoardActivity;
 import com.example.app_turistica_android.LogIn;
+import com.example.app_turistica_android.PerfilUsuario;
 import com.example.app_turistica_android.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;

@@ -21,7 +21,7 @@ public class PerfilUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfilusuario);
         instancias();
-        //acciones();
+        acciones();
 
     }
 
@@ -33,7 +33,7 @@ public class PerfilUsuario extends AppCompatActivity {
         volver.findViewById(R.id.btnvolver);
     }
 
-    /*private void acciones() {
+    private void acciones() {
         misRutas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +70,7 @@ public class PerfilUsuario extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }*/
+    }
 
 
 }

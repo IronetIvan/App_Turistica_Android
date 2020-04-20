@@ -135,7 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getChildren().equals("lugares")){
-                    
+
                 }
             }
 

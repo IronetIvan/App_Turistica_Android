@@ -37,6 +37,7 @@
         <activity android:name=".Registro" />
         <activity android:name=".LogIn" />
         <activity android:name=".EditPerfil" />
+        <activity android:name=".PerfilUsuario" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

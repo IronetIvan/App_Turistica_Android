@@ -32,6 +32,7 @@ import com.example.app_turistica_android.AdaptadorUbicaciones.AdaptadorRecycler;
 import com.example.app_turistica_android.EditPerfil;
 import com.example.app_turistica_android.Explicacion.OnBoardActivity;
 import com.example.app_turistica_android.LogIn;
+import com.example.app_turistica_android.PerfilUsuario;
 import com.example.app_turistica_android.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,6 +44,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.security.Provider;
 
@@ -57,6 +63,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomNavigationView botonNavegacion;
 
     Toolbar toolbar;
+    DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +126,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.menu_superior);
+        myRef = FirebaseDatabase.getInstance().getReference();
+    }
+
+
+    public void cargarUbicacionesDef(){
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getChildren().equals("lugares")){
+                    
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 

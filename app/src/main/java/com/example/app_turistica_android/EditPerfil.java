@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class EditPerfil extends AppCompatActivity {
@@ -47,6 +48,43 @@ public class EditPerfil extends AppCompatActivity {
         acciones();
         traerDatos();
         //actDatos();
+    }
+
+    private void ejemplo(){
+        final String uuid = getIntent().getExtras().getString("uuid");
+        DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios");
+        nodoUsuarios.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //Log.v("firebase",dataSnapshot.getKey());
+                /*if (dataSnapshot.getKey().equals(uuid)){
+                    Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
+                    Iterator<DataSnapshot> iterator = iterable.iterator();
+                    while (iterator.hasNext()){
+                        DataSnapshot actual = iterator.next();
+                        // el objeto json entero
+                        actual.getValue();
+                    }
+                }*/
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        nodoUsuarios.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void instancias() {

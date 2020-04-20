@@ -120,11 +120,9 @@ public class Registro extends AppCompatActivity {
 
        if (!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
             return true;
-       } else if (!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
-           Toast.makeText(this, "El email introducido no es valido", Toast.LENGTH_SHORT).show();
-           return false;
+
        } else {
-           Toast.makeText(this, "El email esta vacio", Toast.LENGTH_SHORT).show();
+           Toast.makeText(this, "El email introducido no es valido", Toast.LENGTH_SHORT).show();
            return false;
        }
 

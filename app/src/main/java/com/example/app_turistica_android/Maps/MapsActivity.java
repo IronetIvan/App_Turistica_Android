@@ -112,7 +112,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Toast.makeText(MapsActivity.this, "Pantalla para agregar una ruta", Toast.LENGTH_LONG).show();
                 }
                 if (item.getItemId() == R.id.perfilusuario) {
-                    Intent intent = new Intent(MapsActivity.this, EditPerfil.class);
+                    Intent intent = new Intent(MapsActivity.this, PerfilUsuario.class);
                     startActivity(intent);
                     //Toast.makeText(MapsActivity.this, "Listado del usuario con opciones como (nombre de usuario, rutas, favoritos, cambiar email/password", Toast.LENGTH_LONG).show();
                 }

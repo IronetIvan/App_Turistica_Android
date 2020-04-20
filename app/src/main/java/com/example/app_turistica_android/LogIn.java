@@ -114,6 +114,8 @@ public class LogIn extends AppCompatActivity {
                             String user = email.substring(0, pos);
                             Toast.makeText(LogIn.this, "Bienvenido: " + nombre.getText(), Toast.LENGTH_LONG).show();
                             Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
+                            // sacas el uid del usuario logeado;
+                            //iniciarSesion.putExtra("uuid",firebaseAuth.getCurrentUser().getUid());
                             LogIn.this.startActivity(iniciarSesion);
 
 

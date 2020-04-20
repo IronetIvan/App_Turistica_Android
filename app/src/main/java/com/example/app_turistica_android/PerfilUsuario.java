@@ -26,11 +26,11 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private void instancias() {
-        misRutas.findViewById(R.id.btnMisRutas);
-        favoritos.findViewById(R.id.btnFavoritos);
-        informacionCuenta.findViewById(R.id.btnInformacion);
-        editarPerfil.findViewById(R.id.btnEditarPerfil);
-        volver.findViewById(R.id.btnvolver);
+        misRutas = findViewById(R.id.btnMisRutas);
+        favoritos = findViewById(R.id.btnFavoritos);
+        informacionCuenta = findViewById(R.id.btnInformacion);
+        editarPerfil = findViewById(R.id.btnEditarPerfil);
+        volver = findViewById(R.id.btnvolver);
     }
 
     private void acciones() {

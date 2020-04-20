@@ -34,6 +34,7 @@ import com.example.app_turistica_android.Explicacion.OnBoardActivity;
 import com.example.app_turistica_android.LogIn;
 import com.example.app_turistica_android.PerfilUsuario;
 import com.example.app_turistica_android.R;
+import com.example.app_turistica_android.utils.Lugares;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -51,6 +52,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.security.Provider;
+import java.util.Iterator;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -71,6 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         instancias();
         acciones();
+        cargarUbicacionesDef();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -131,11 +134,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     public void cargarUbicacionesDef(){
-        myRef.addValueEventListener(new ValueEventListener() {
+
+        //final String nombre = getIntent().getExtras().getString("nombre");
+        final DatabaseReference nodoLugares= myRef.getDatabase().getReference().child("lugares").child("defecto");
+        nodoLugares.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getChildren().equals("lugares")){
-
+                Log.v("firebase lugares", dataSnapshot.getKey());
+                if(dataSnapshot.getKey().equals(nodoLugares)){
+                    Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
+                    Iterator<DataSnapshot> iterator = iterable.iterator();
+                    while(iterator.hasNext()){
+                        DataSnapshot actual = iterator.next();
+                        actual.getValue();
+                    }
                 }
             }
 
@@ -150,11 +162,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        Localizaciones(googleMap);
+        /*Localizaciones(googleMap);
         final LatLng KM0 = new LatLng(40.416671, -3.703817);
         mMap.addMarker(new MarkerOptions().position(KM0).title("Sol"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(KM0));//Señalar punto carga del mapa
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(KM0, 18), 5000, null);//Zoom en un punto a la hora de cargar
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(KM0, 18), 5000, null);//Zoom en un punto a la hora de cargar*/
 
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() { //Creamos marcas FAV del usuario Click largo
             @Override
@@ -251,7 +263,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    public void Localizaciones(GoogleMap googleMap) {
+    /*public void Localizaciones(GoogleMap googleMap) {
         mMap = googleMap;
 
         // TODO: estos datos tenéis que traerlos de firebase, que son los favoritos del usuarios
@@ -306,5 +318,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final LatLng Bernabeu = new LatLng(40.452992, -3.688404);
         mMap.addMarker(new MarkerOptions().position(Bernabeu).title("Santiago Bernabéu"));
 
-    }
+    }*/
 }

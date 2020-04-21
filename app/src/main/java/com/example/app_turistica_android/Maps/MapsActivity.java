@@ -52,6 +52,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.security.Provider;
+import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.Iterator;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -61,11 +63,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker marcador;
     double lat = 0.0;
     double lng = 0.0;
-
     BottomNavigationView botonNavegacion;
-
     Toolbar toolbar;
     DatabaseReference myRef;
+    private ArrayList<Marker> tmpRealTimeMarkers= new ArrayList<>();
+    private ArrayList<Marker> realTimeMarkers= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         instancias();
         acciones();
-        cargarUbicacionesDef();
+        
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -133,22 +135,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    public void cargarUbicacionesDef(){
 
-        //final String nombre = getIntent().getExtras().getString("nombre");
-        final DatabaseReference nodoLugares= myRef.getDatabase().getReference().child("lugares").child("defecto");
-        nodoLugares.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.v("firebase lugares", dataSnapshot.getKey());
-                if(dataSnapshot.getKey().equals(nodoLugares)){
-                    Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
-                    Iterator<DataSnapshot> iterator = iterable.iterator();
-                    while(iterator.hasNext()){
-                        DataSnapshot actual = iterator.next();
-                        actual.getValue();
-                    }
+                for(Marker marker: realTimeMarkers){
+                    marker.remove();
                 }
+
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    Lugares lugares = snapshot.getValue(Lugares.class);
+                    Double latitud = lugares.getLatitud();
+                    Double longitud = lugares.getLongitud();
+                    String nombre = lugares.getNombre();
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(new LatLng(latitud,longitud));
+                    markerOptions.title(nombre);
+                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+
+
+                }
+                realTimeMarkers.clear();
+                realTimeMarkers.addAll(tmpRealTimeMarkers);
             }
 
             @Override
@@ -156,17 +168,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
-    }
 
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        /*Localizaciones(googleMap);
-        final LatLng KM0 = new LatLng(40.416671, -3.703817);
-        mMap.addMarker(new MarkerOptions().position(KM0).title("Sol"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(KM0));//Señalar punto carga del mapa
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(KM0, 18), 5000, null);//Zoom en un punto a la hora de cargar*/
 
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() { //Creamos marcas FAV del usuario Click largo
             @Override

@@ -32,8 +32,8 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Mi
     public void onBindViewHolder(@NonNull AdaptadorRecycler.MiHolder holder, int position) {
         final Lugares lugar = listaLugares.get(position);
         holder.getTitulo().setText(lugar.getNombre());
-        holder.getImagen().setImageResource(lugar.getImagen());
-        holder.getNombre().setText(lugar.getDescripcion());
+        //holder.getImagen().setImageResource(lugar.getImagen());
+        //holder.getNombre().setText(lugar.getDescripcion());
         holder.getImagen().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

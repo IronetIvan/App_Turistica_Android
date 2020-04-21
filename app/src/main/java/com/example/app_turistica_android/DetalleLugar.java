@@ -26,9 +26,9 @@ public class DetalleLugar extends AppCompatActivity {
         Lugares lRecuperado = null;
         //lRecuperado = (Lugares) getIntent().getExtras().get(CochesActivityRecycler.TAG1); llamar al AppCompatActivity de LugaresActivityRecycler (Sin crear)
         //cRecuperado = getIntent().getExtras().get(CochesActivityRecycler.TAG1);//Error coger TAG
-        imagen.setImageResource(lRecuperado.getImagen());
+        //imagen.setImageResource(lRecuperado.getImagen());
         txtNombre.setText(lRecuperado.getNombre());
-        txtDescripcion.setText(lRecuperado.getDescripcion());
+        //txtDescripcion.setText(lRecuperado.getDescripcion());
         txtDescripcion.setMovementMethod(new ScrollingMovementMethod());
 
     }

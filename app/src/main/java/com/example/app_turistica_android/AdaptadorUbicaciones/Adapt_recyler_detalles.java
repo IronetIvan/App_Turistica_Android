@@ -37,9 +37,9 @@ public class Adapt_recyler_detalles extends RecyclerView.Adapter<Adapt_recyler_d
     @Override
     public void onBindViewHolder(@NonNull Adapt_recyler_detalles.HolderDetalles holder, int position) {
         final Lugares lugarActual = listaLugares.get(position);
-        holder.getImagen().setImageResource(lugarActual.getImagen());
+        //holder.getImagen().setImageResource(lugarActual.getImagen());
         holder.getNombre().setText(lugarActual.getNombre());
-        holder.getDescripcion().setText(lugarActual.getDescripcion());
+        //holder.getDescripcion().setText(lugarActual.getDescripcion());
         holder.getLayoutDetalles().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

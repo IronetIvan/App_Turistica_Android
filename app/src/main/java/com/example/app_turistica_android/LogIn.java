@@ -115,9 +115,8 @@ public class LogIn extends AppCompatActivity {
                             Toast.makeText(LogIn.this, "Bienvenido: " + nombre.getText(), Toast.LENGTH_LONG).show();
                             Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
                             // sacas el uid del usuario logeado;
-                            //iniciarSesion.putExtra("uuid",firebaseAuth.getCurrentUser().getUid());
+                            iniciarSesion.putExtra("uid",firebaseAuth.getCurrentUser().getUid());
                             LogIn.this.startActivity(iniciarSesion);
-
 
                         } else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {//si se presenta una colisión

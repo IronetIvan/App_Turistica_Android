@@ -46,18 +46,19 @@ public class EditPerfil extends AppCompatActivity {
         setContentView(R.layout.activity_editperfil);
         instancias();
         acciones();
-        traerDatos();
+        cargarDatos();
+        //traerDatos();
         //actDatos();
     }
 
-    private void ejemplo(){
-        final String uuid = getIntent().getExtras().getString("uuid");
+    private void cargarDatos(){
+        final String uid = getIntent().getExtras().getString("uid");
         DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios");
         nodoUsuarios.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //Log.v("firebase",dataSnapshot.getKey());
-                /*if (dataSnapshot.getKey().equals(uuid)){
+                if (dataSnapshot.getKey().equals(uid)){
                     Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
                     Iterator<DataSnapshot> iterator = iterable.iterator();
                     while (iterator.hasNext()){
@@ -65,7 +66,7 @@ public class EditPerfil extends AppCompatActivity {
                         // el objeto json entero
                         actual.getValue();
                     }
-                }*/
+                }
             }
 
             @Override
@@ -74,7 +75,7 @@ public class EditPerfil extends AppCompatActivity {
             }
         });
 
-        nodoUsuarios.addListenerForSingleValueEvent(new ValueEventListener() {
+        /*nodoUsuarios.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -84,7 +85,7 @@ public class EditPerfil extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
     }
 
     private void instancias() {
@@ -99,7 +100,7 @@ public class EditPerfil extends AppCompatActivity {
 
     }
 
-    private void traerDatos(){
+    /*private void traerDatos(){
 
         myRef.child("usuarios").child("LNp8sYdWfzQRJmC6tdjsSW8PReA3").addValueEventListener(new ValueEventListener() {
             @Override
@@ -126,7 +127,7 @@ public class EditPerfil extends AppCompatActivity {
                         String nombreUsuario = user.getNombre_usuario();
 
                         Log.e("Nombre usuario",""+ nombreUsuario);
-                    }*/
+                    }
 
 
                 }
@@ -139,7 +140,7 @@ public class EditPerfil extends AppCompatActivity {
         });
 
 
-    }
+    }*/
 
     /*public void actDatos(){
         String nombreUsuario = txtUsuario.getText().toString();

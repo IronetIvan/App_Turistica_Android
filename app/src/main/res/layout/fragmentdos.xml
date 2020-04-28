@@ -20,7 +20,8 @@
         android:textSize="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="En todo momento podrá trazar rutas hacia distintos lugares señalados en el mapa pulsando sobre ellas."
+        android:text="
+Tendras al alcance de la mano cualquier lugar de interes turistico o gastronómico."
         android:layout_weight="0.2"
         android:layout_gravity="center_vertical|center_horizontal"
         android:gravity="top|center_horizontal"/>

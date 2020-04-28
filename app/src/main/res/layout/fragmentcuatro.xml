@@ -19,7 +19,7 @@
         android:textSize="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="En el menu de abajo podrá visualizar distintos iconos, pulsando sobre cualquiera de ellos podrás hacer un filtro buscando los lugares que desees."
+        android:text="En el menu de abajo podrás interactuar con diferentes opciones, desde ver otros lugares subidos por la gente hasta añadir cualquier ruta, además de poder hacer un filtrado en función de tus gustos."
         android:layout_weight="0.2"
         android:layout_gravity="center_vertical|center_horizontal"
         android:gravity="top|center_horizontal"/>

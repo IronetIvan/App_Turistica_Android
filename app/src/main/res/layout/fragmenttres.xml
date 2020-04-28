@@ -20,7 +20,8 @@
         android:textSize="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cualquier lugar que visite podrá ser marcado como favorito para usted, y además podra escribir reseñas de todas sus visitas con su propia cuenta de usuario."
+        android:text="Cualquier lugar que visite podrás marcarlo como favorito, y además podras escribir reseñas de las distintas ubicaciones
+que hayas visitado."
         android:layout_weight="0.2"
         android:layout_gravity="center_vertical|center_horizontal"
         android:gravity="top|center_horizontal"/>

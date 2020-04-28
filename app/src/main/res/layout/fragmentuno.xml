@@ -20,7 +20,7 @@
         android:textSize="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cuando usted navegue por el mapa podrá cambiar la visualización del mapa con los botones de la esquina superior izquierda."
+        android:text="Cuando navegues por el mapa podras cambiar la vista del plano con los botones de vista satelite y vista estándar sitdos arriba a la izquierda."
         android:layout_weight="0.2"
         android:layout_gravity="center_vertical|center_horizontal"
         android:gravity="top|center_horizontal"/>

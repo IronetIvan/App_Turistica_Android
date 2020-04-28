@@ -30,6 +30,7 @@ public class PerfilUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_perfilusuario);
         instancias();
         acciones();
+        //cargarDatos();
 
     }
 

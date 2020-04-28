@@ -39,7 +39,7 @@
             android:background="@drawable/cuadros_texto"
             android:padding="10dp"
             android:textColor="@color/blanco"
-            android:text="prueba@prueba.com"/>
+            android:text="ivan@prueba.com"/>
 
         <EditText
             android:id="@+id/txtpassword"

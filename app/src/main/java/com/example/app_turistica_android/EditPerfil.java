@@ -46,7 +46,7 @@ public class EditPerfil extends AppCompatActivity {
         setContentView(R.layout.activity_editperfil);
         instancias();
         acciones();
-        cargarDatos();
+        //cargarDatos();
         //traerDatos();
         //actDatos();
     }

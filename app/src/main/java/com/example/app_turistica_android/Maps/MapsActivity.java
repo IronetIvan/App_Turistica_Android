@@ -106,7 +106,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                 if (item.getItemId() == R.id.mapas) {
-                    Toast.makeText(MapsActivity.this, "Muestra el Fragment con el mapa", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MapsActivity.this, MapsActivity.class);
+                    startActivity(intent);
                 }
                 if (item.getItemId() == R.id.lugares) {
                     Toast.makeText(MapsActivity.this, "Muestra un listado con los lugares que sube la gente", Toast.LENGTH_LONG).show();

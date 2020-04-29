@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,10 +47,23 @@ public class EditPerfil extends AppCompatActivity {
         setContentView(R.layout.activity_editperfil);
         instancias();
         acciones();
+        myRef = FirebaseDatabase.getInstance().getReference();
         //cargarDatos();
         //traerDatos();
         //actDatos();
     }
+    private void instancias() {
+        txtCorreo = findViewById(R.id.txtNombre);
+        txtUsuario = findViewById(R.id.editText5);
+        txtPassword = findViewById(R.id.editText7);
+        txtConfirPassword = findViewById(R.id.editext8);
+        btnGuardar = findViewById(R.id.btnGuardar);
+        //firebaseAuth = firebaseAuth.getInstance();
+        //database = FirebaseDatabase.getInstance();
+
+    }
+
+
 
     private void cargarDatos(){
         final String uid = getIntent().getExtras().getString("uid");
@@ -75,30 +89,9 @@ public class EditPerfil extends AppCompatActivity {
             }
         });
 
-        /*nodoUsuarios.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
     }
 
-    private void instancias() {
-        txtCorreo = findViewById(R.id.txtNombre);
-        txtUsuario = findViewById(R.id.editText5);
-        txtPassword = findViewById(R.id.editText7);
-        txtConfirPassword = findViewById(R.id.editext8);
-        btnGuardar = findViewById(R.id.btnGuardar);
-        myRef = FirebaseDatabase.getInstance().getReference();
-        //firebaseAuth = firebaseAuth.getInstance();
-        //database = FirebaseDatabase.getInstance();
 
-    }
 
     /*private void traerDatos(){
 
@@ -142,16 +135,6 @@ public class EditPerfil extends AppCompatActivity {
 
     }*/
 
-    /*public void actDatos(){
-        String nombreUsuario = txtUsuario.getText().toString();
-        String passwd = txtPassword.getText().toString();
-        myRef.setValue(nombreUsuario);
-        myRef.setValue(passwd);
-
-        txtUsuario.setText("");
-        txtPassword.setText("");
-    }*/
-
 
 
     private void acciones() {
@@ -173,13 +156,5 @@ public class EditPerfil extends AppCompatActivity {
 
     }
 
-    private void ActPerfil() {
-        Map<String, Object> datosAct = new HashMap<>();
-        datosAct.put("usuario",txtUsuario);
-        datosAct.put("contraseña", txtPassword);
-        //datosAct.put("confirPasword", confirPassword);
-
-        myRef.child("usuarios").child("LNp8sYdWfzQRJmC6tdjsSW8PReA3").updateChildren(datosAct);
-    }
 }
 

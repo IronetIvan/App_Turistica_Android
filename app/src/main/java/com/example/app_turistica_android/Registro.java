@@ -114,19 +114,27 @@ public class Registro extends AppCompatActivity {
 
    private boolean validarEmail(EditText email) {
 
-        //Revisar condiciones
+       final String emailInput = txtCorreo.getText().toString().trim();
+       String passwordInput = txtPassword.getText().toString();
 
-       String emailInput = email.getText().toString();
+       //Comprueba las variantes de email
 
        if (!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
-            return true;
-
-       } else {
-           Toast.makeText(this, "El email introducido no es valido", Toast.LENGTH_SHORT).show();
-           return false;
+           return true;
+       } else if (!TextUtils.isEmpty(emailInput)){
+           txtCorreo.setError("Email no valido");
+       }else if (TextUtils.isEmpty((emailInput))){
+           txtCorreo.setError("Introduce un email");
        }
 
+       if(TextUtils.isEmpty(passwordInput)){
+           txtPassword.setError("Introduce contraseña");
+       }
+
+       return false;
    }
+
+
 }
 
 

@@ -120,15 +120,16 @@ public class Registro extends AppCompatActivity {
        //Comprueba las variantes de email
 
        if (!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
-           return true;
+
+           if(TextUtils.isEmpty(passwordInput)){
+               txtPassword.setError("Introduce contraseña");
+           } else {
+               return true;
+           }
        } else if (!TextUtils.isEmpty(emailInput)){
            txtCorreo.setError("Email no valido");
        }else if (TextUtils.isEmpty((emailInput))){
            txtCorreo.setError("Introduce un email");
-       }
-
-       if(TextUtils.isEmpty(passwordInput)){
-           txtPassword.setError("Introduce contraseña");
        }
 
        return false;

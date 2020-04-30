@@ -69,14 +69,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     DatabaseReference myRef;
     private ArrayList<Marker> tmpRealTimeMarkers= new ArrayList<>();
     private ArrayList<Marker> realTimeMarkers= new ArrayList<>();
-
+    String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         instancias();
         acciones();
-
+        uid = getIntent().getExtras().getString("uid");
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -117,6 +117,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 if (item.getItemId() == R.id.perfilusuario) {
                     Intent intent = new Intent(MapsActivity.this, PerfilUsuario.class);
+                    intent.putExtra("uid",uid);
                     startActivity(intent);
                     //Toast.makeText(MapsActivity.this, "Listado del usuario con opciones como (nombre de usuario, rutas, favoritos, cambiar email/password", Toast.LENGTH_LONG).show();
                 }

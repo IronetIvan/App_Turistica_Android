@@ -47,7 +47,7 @@ public class EditPerfil extends AppCompatActivity {
         setContentView(R.layout.activity_editperfil);
         instancias();
         acciones();
-        //cargarDatos();
+        cargarDatos();
         //traerDatos();
         //actDatos();
     }
@@ -70,6 +70,7 @@ public class EditPerfil extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //Log.v("firebase",dataSnapshot.getKey());
+                // nulo
                 if (dataSnapshot.getKey().equals(uid)){
                     Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
                     Iterator<DataSnapshot> iterator = iterable.iterator();

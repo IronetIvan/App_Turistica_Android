@@ -26,6 +26,7 @@ public class PerfilUsuario extends AppCompatActivity {
     FloatingActionButton volver;
     FirebaseAuth mAuth;
     DatabaseReference myRef;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class PerfilUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_perfilusuario);
         instancias();
         acciones();
+        uid = getIntent().getExtras().getString("uid");
         //cargarDatos();
 
     }
@@ -75,6 +77,7 @@ public class PerfilUsuario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PerfilUsuario.this, EditPerfil.class);
+                intent.putExtra("uid",uid);
                 startActivity(intent);
             }
         });

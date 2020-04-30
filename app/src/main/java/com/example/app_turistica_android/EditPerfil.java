@@ -47,7 +47,6 @@ public class EditPerfil extends AppCompatActivity {
         setContentView(R.layout.activity_editperfil);
         instancias();
         acciones();
-        myRef = FirebaseDatabase.getInstance().getReference();
         //cargarDatos();
         //traerDatos();
         //actDatos();
@@ -58,8 +57,7 @@ public class EditPerfil extends AppCompatActivity {
         txtPassword = findViewById(R.id.editText7);
         txtConfirPassword = findViewById(R.id.editext8);
         btnGuardar = findViewById(R.id.btnGuardar);
-        //firebaseAuth = firebaseAuth.getInstance();
-        //database = FirebaseDatabase.getInstance();
+        myRef = FirebaseDatabase.getInstance().getReference();
 
     }
 

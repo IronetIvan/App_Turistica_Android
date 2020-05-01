@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class PerfilUsuario extends AppCompatActivity {
 
-    LinearLayout misRutas, favoritos, informacionCuenta, editarPerfil,cerrarSesion;
+    LinearLayout misRutas, favoritos, ayudaCuenta, editarPerfil,cerrarSesion;
     FloatingActionButton volver;
     FirebaseAuth mAuth;
     DatabaseReference myRef;
@@ -34,15 +34,13 @@ public class PerfilUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_perfilusuario);
         instancias();
         acciones();
-        uid = getIntent().getExtras().getString("uid");
-        //cargarDatos();
 
     }
 
     private void instancias() {
         misRutas = findViewById(R.id.btnMisRutas);
         favoritos = findViewById(R.id.btnFavoritos);
-        informacionCuenta = findViewById(R.id.btnInformacion);
+        ayudaCuenta = findViewById(R.id.btnAyuda);
         editarPerfil = findViewById(R.id.btnEditarPerfil);
         volver = findViewById(R.id.btnvolver);
         cerrarSesion = findViewById(R.id.btnCerrarSesion);
@@ -65,10 +63,11 @@ public class PerfilUsuario extends AppCompatActivity {
             }
         });
 
-        informacionCuenta.setOnClickListener(new View.OnClickListener() {
+        ayudaCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PerfilUsuario.this,"Permite al usuario ver su informacion de cuenta", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PerfilUsuario.this, Ayuda.class);
+                startActivity(intent);
             }
         });
 

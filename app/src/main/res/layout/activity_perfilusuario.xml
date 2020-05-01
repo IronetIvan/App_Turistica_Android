@@ -84,7 +84,7 @@
             android:orientation="horizontal"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
-            android:id="@+id/btnInformacion">
+            android:id="@+id/btnAyuda">
 
             <ImageView
                 android:layout_width="wrap_content"

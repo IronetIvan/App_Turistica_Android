@@ -47,7 +47,7 @@ public class EditPerfil extends AppCompatActivity {
         setContentView(R.layout.activity_editperfil);
         instancias();
         acciones();
-        cargarDatos();
+        cargaDatos();
         //traerDatos();
         //actDatos();
     }
@@ -61,34 +61,33 @@ public class EditPerfil extends AppCompatActivity {
 
     }
 
-
-
-    private void cargarDatos(){
+    private void cargaDatos(){
         final String uid = getIntent().getExtras().getString("uid");
-        DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios");
-        nodoUsuarios.addValueEventListener(new ValueEventListener() {
+        myRef.getDatabase().getReference().child("usuarios");
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //Log.v("firebase",dataSnapshot.getKey());
-                // nulo
-                if (dataSnapshot.getKey().equals(uid)){
-                    Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
-                    Iterator<DataSnapshot> iterator = iterable.iterator();
-                    while (iterator.hasNext()){
-                        DataSnapshot actual = iterator.next();
-                        // el objeto json entero
-                        actual.getValue();
+
+                if(uid!=null) {
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+
+                        Usuarios usuarios = snapshot.getValue(Usuarios.class);
+                        usuarios.getEmail(txtCorreo);
+                        usuarios.getNombre(txtUsuario);
+                        usuarios.getContraseña(txtPassword);
                     }
                 }
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(getApplicationContext(),"Error al cargar datos de usuario", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
+
 
 
 

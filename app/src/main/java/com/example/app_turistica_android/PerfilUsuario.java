@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class PerfilUsuario extends AppCompatActivity {
-    TextView txtUsuario;
+
     LinearLayout misRutas, favoritos, informacionCuenta, editarPerfil,cerrarSesion;
     FloatingActionButton volver;
     FirebaseAuth mAuth;
@@ -40,7 +40,6 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private void instancias() {
-        txtUsuario = findViewById(R.id.txtUsuario);
         misRutas = findViewById(R.id.btnMisRutas);
         favoritos = findViewById(R.id.btnFavoritos);
         informacionCuenta = findViewById(R.id.btnInformacion);
@@ -100,19 +99,4 @@ public class PerfilUsuario extends AppCompatActivity {
         });
     }
 
-    private void cargarDatos(){
-        DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios");
-        nodoUsuarios.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String usuario = dataSnapshot.child("usuario").getValue().toString();
-                txtUsuario.setText(usuario);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-}
 }

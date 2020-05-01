@@ -1,24 +1,28 @@
 package com.example.app_turistica_android.utils;
 
+import android.widget.EditText;
+import android.widget.TextView;
+
 import java.io.Serializable;
 
 public class Usuarios implements Serializable {
-    private String email,nombre,nombre_usuario,tipo,uid;
+    private String email,nombre,nombre_usuario,tipo,uid,contraseña;
     private boolean intro;
 
     public Usuarios() {
     }
 
-    public Usuarios(String email, String nombre, String nombre_usuario, String tipo, String uid, boolean intro) {
+    public Usuarios(String email, String nombre, String nombre_usuario, String tipo, String uid, String contraseña, boolean intro) {
         this.email = email;
         this.nombre = nombre;
         this.nombre_usuario = nombre_usuario;
         this.tipo = tipo;
         this.uid = uid;
+        this.contraseña = contraseña;
         this.intro = intro;
     }
 
-    public String getEmail() {
+    public String getEmail(TextView txtCorreo) {
         return email;
     }
 
@@ -26,7 +30,7 @@ public class Usuarios implements Serializable {
         this.email = email;
     }
 
-    public String getNombre() {
+    public String getNombre(EditText txtUsuario) {
         return nombre;
     }
 
@@ -56,6 +60,14 @@ public class Usuarios implements Serializable {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getContraseña(EditText txtPassword) {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     public boolean isIntro() {

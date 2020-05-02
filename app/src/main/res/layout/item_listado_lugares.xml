@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layoutDetalles"
-    >
+    android:id="@+id/layoutDetalles">
 
     <ImageView
-        android:id="@+id/imagen_fila"
+        android:id="@+id/imagen_lugar"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="20dp"
+        android:layout_margin="20dp"
         android:src="@drawable/iconoiglesia" />
 
     <TextView
         android:id="@+id/nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="40dp"
-        android:textColor="#922222"
-        android:textSize="20dp" />
+        android:textColor="@color/blanco"
+        android:textSize="20sp"
+        android:text="Santiago Bernabeu"/>
 
     <TextView
-        android:id="@+id/descripcion"
+        android:id="@+id/tipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20sp"
         android:layout_marginTop="40dp"
-        android:textColor="#ffffff"
-        android:textSize="20dp" />
+        android:textColor="@color/blanco"
+        android:textSize="20dp"
+        android:text="Ocio"/>
 
 </LinearLayout>

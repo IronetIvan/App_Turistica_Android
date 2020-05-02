@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,36 +15,32 @@ import com.example.app_turistica_android.utils.Lugares;
 
 import java.util.ArrayList;
 
-public class Adapt_recyler_detalles extends RecyclerView.Adapter<Adapt_recyler_detalles.HolderDetalles> {
+public class ListadoHolder extends RecyclerView.Adapter<ListadoHolder.HolderDetalles> {
+
     Context ctx;
     ArrayList<Lugares> listaLugares;
-    OnMiRecyclerListener listener;
+    //OnMiRecyclerListener listener;
 
-    public Adapt_recyler_detalles(Context ctx, ArrayList<Lugares> listaLugares) {
+    public ListadoHolder(Context ctx, ArrayList<Lugares> listaLugares) {
         this.ctx = ctx;
         this.listaLugares = listaLugares;
-        listener = (OnMiRecyclerListener) ctx;
+        //listener = (OnMiRecyclerListener) ctx;
     }
     @NonNull
     @Override
-    public Adapt_recyler_detalles.HolderDetalles onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(ctx).inflate(R.layout.recycler_layout_det, parent, false);
+    public ListadoHolder.HolderDetalles onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(ctx).inflate(R.layout.item_listado_lugares, parent, false);
         HolderDetalles miHolder = new HolderDetalles(view);
         return miHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapt_recyler_detalles.HolderDetalles holder, int position) {
+    public void onBindViewHolder(@NonNull ListadoHolder.HolderDetalles holder, int position) {
         final Lugares lugarActual = listaLugares.get(position);
-        //holder.getImagen().setImageResource(lugarActual.getImagen());
+
+        holder.getFoto().setImageResource(Integer.parseInt(lugarActual.getFoto()));
         holder.getNombre().setText(lugarActual.getNombre());
-        //holder.getDescripcion().setText(lugarActual.getDescripcion());
-        holder.getLayoutDetalles().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onMiRecycler(lugarActual);
-            }
-        });
+        holder.getDescripcion().setText(lugarActual.getTipo());
     }
 
     @Override
@@ -55,21 +50,17 @@ public class Adapt_recyler_detalles extends RecyclerView.Adapter<Adapt_recyler_d
 
     class HolderDetalles extends RecyclerView.ViewHolder {
 
-        private ImageView imagen;
+        private ImageView foto;
         private TextView descripcion, nombre;
-        private LinearLayout layoutDetalles;
 
         public HolderDetalles(@NonNull View itemView) {
             super(itemView);
-            imagen = itemView.findViewById(R.id.imagen_fila);
+            foto = itemView.findViewById(R.id.imagen_lugar);
             nombre = itemView.findViewById(R.id.nombre);
-            descripcion = itemView.findViewById(R.id.descripcion);
-            layoutDetalles = itemView.findViewById(R.id.layoutDetalles);
+            //escripcion = itemView.findViewById(R.id.descripcion);
         }
 
-        public ImageView getImagen() {
-            return imagen;
-        }
+       public ImageView getFoto(){return foto;}
 
         public TextView getNombre() {
             return nombre;
@@ -79,9 +70,6 @@ public class Adapt_recyler_detalles extends RecyclerView.Adapter<Adapt_recyler_d
             return descripcion;
         }
 
-        public LinearLayout getLayoutDetalles() {
-            return layoutDetalles;
-        }
     }
     public interface OnMiRecyclerListener {
         public void onMiRecycler(Lugares lugar);

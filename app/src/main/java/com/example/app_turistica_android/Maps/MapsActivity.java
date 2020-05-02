@@ -3,23 +3,15 @@ package com.example.app_turistica_android.Maps;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.location.LocationProvider;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -28,10 +20,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-import com.example.app_turistica_android.AdaptadorUbicaciones.AdaptadorRecycler;
-import com.example.app_turistica_android.EditPerfil;
-import com.example.app_turistica_android.Explicacion.OnBoardActivity;
-import com.example.app_turistica_android.LogIn;
+import com.example.app_turistica_android.Pantallas.ListadoLugares;
 import com.example.app_turistica_android.PerfilUsuario;
 import com.example.app_turistica_android.R;
 import com.example.app_turistica_android.utils.Lugares;
@@ -40,7 +29,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -52,10 +40,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.security.Provider;
 import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.Iterator;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -110,7 +95,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     startActivity(intent);
                 }
                 if (item.getItemId() == R.id.lugares) {
-                    Toast.makeText(MapsActivity.this, "Muestra un listado con los lugares que sube la gente", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MapsActivity.this, ListadoLugares.class);
+                    startActivity(intent);
                 }
                 if (item.getItemId() == R.id.addruta) {
                     Toast.makeText(MapsActivity.this, "Pantalla para agregar una ruta", Toast.LENGTH_LONG).show();

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Lugares implements Serializable {
     private double latitud, longitud;
-    private String nombre, tipo;
+    private String nombre, tipo, foto;
 
     public Lugares() {
     }
@@ -39,5 +39,13 @@ public class Lugares implements Serializable {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

@@ -21,8 +21,8 @@
 
 
         <ImageView
-            android:layout_width="380sp"
-            android:layout_height="234dp"
+            android:layout_width="400dp"
+            android:layout_height="300dp"
             android:layout_marginBottom="150dp"
             android:padding="10dp"
             android:src="@drawable/iconoapp" />
@@ -31,9 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50sp"
-            android:text="App Turistica"
+            android:text="TourMap"
             android:textColor="@color/blanco"
-            android:textSize="40dp"/>
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"/>
 
     </LinearLayout>
 

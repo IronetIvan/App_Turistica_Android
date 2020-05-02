@@ -7,15 +7,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.app_turistica_android.R;
+
 public class ListadoLugaresHolder extends RecyclerView.ViewHolder {
 
     ImageView foto;
     TextView nombre, tipo;
 
-    public ListadoLugaresHolder(@NonNull View itemView, ImageView foto, TextView nombre, TextView tipo) {
+    public ListadoLugaresHolder(View itemView) {
         super(itemView);
-        this.foto = foto;
-        this.nombre = nombre;
-        this.tipo = tipo;
+        foto = itemView.findViewById(R.id.imagen_lugar);
+        nombre = itemView.findViewById(R.id.nombre);
+        tipo = itemView.findViewById(R.id.tipo);
     }
 }

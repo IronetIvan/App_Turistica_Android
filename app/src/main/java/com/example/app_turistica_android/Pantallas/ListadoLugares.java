@@ -27,15 +27,16 @@ public class ListadoLugares extends AppCompatActivity {
         recyclerView = findViewById(R.id.listadolugares);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference referencia = database.getReference("lugares").child("defecto");
+        DatabaseReference referencia = database.getReference("lugares");
 
-        AdaptadorFirebase adaptadorFirebase = new AdaptadorFirebase(Lugares.class, R.layout.item_listado_lugares
-        ,ListadoLugaresHolder.class, referencia,ListadoLugares.this);
-
-        /*AdaptadorFirebase adaptadorFirebase = new AdaptadorFirebase(Lugares.class, R.layout.recycler_listado_lugares
+        /*AdaptadorFirebase adaptadorFirebase = new AdaptadorFirebase(Lugares.class, R.layout.item_listado_lugares
         ,ListadoLugaresHolder.class, referencia,ListadoLugares.this);*/
 
+        AdaptadorFirebase adaptadorFirebase = new AdaptadorFirebase(Lugares.class, R.layout.recycler_listado_lugares
+        ,ListadoLugaresHolder.class, referencia,ListadoLugares.this);
+
         recyclerView.setAdapter(adaptadorFirebase);
-        recyclerView.setLayoutManager(new GridLayoutManager(ListadoLugares.this,2, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new GridLayoutManager(ListadoLugares.this,3,
+                LinearLayoutManager.VERTICAL, false));
     }
 }

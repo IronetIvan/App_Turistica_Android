@@ -95,8 +95,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     startActivity(intent);
                 }
                 if (item.getItemId() == R.id.lugares) {
-                    Intent intent = new Intent(MapsActivity.this, ListadoLugares.class);
-                    startActivity(intent);
+                    Intent intentLugares = new Intent(MapsActivity.this, ListadoLugares.class);
+                    startActivity(intentLugares);
                 }
                 if (item.getItemId() == R.id.addruta) {
                     Toast.makeText(MapsActivity.this, "Pantalla para agregar una ruta", Toast.LENGTH_LONG).show();

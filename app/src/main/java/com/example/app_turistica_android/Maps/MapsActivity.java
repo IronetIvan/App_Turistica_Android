@@ -171,7 +171,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public boolean onMarkerClick(Marker marker) {
                 //Intent intent = new Intent(MapsActivity.this, AdaptadorRecycler.class);
                 //startActivity(intent);
-                Toast.makeText(getApplicationContext(), "Hemos pulsado una ubicación", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Hemos pulsado una ubicación", Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -196,7 +196,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             agregarMarcador(lat, lng);
         }
         Log.v("mapa", "localizacion ready");
-        Toast.makeText(getApplicationContext(), String.format("Mi ubicacion es %.2f %.2f", lat, lng), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), String.format("Mi ubicacion es %.2f %.2f", lat, lng), Toast.LENGTH_SHORT).show(); TOAST Ubicacion Coordenadas
     }
 
     LocationListener locListener = new LocationListener() {
@@ -253,61 +253,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 == PackageManager.PERMISSION_GRANTED);
     }
 
-
-    /*public void Localizaciones(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // TODO: estos datos tenéis que traerlos de firebase, que son los favoritos del usuarios
-        final LatLng Retiro = new LatLng(40.415427, -3.684490);
-        mMap.addMarker(new MarkerOptions().position(Retiro).title("Parque del Retiro"));
-        final LatLng Cibeles = new LatLng(40.419397, -3.693186);
-        mMap.addMarker(new MarkerOptions().position(Cibeles).title("Fuente de Cibeles"));
-        final LatLng Neptuno = new LatLng(40.415226, -3.694086);
-        mMap.addMarker(new MarkerOptions().position(Neptuno).title("Fuente de Neptuno"));
-        final LatLng MPrado = new LatLng(40.414072, -3.692334);
-        mMap.addMarker(new MarkerOptions().position(MPrado).title("Museo del Prado"));
-        final LatLng PlzMayor = new LatLng(40.415560, -3.707426);
-        mMap.addMarker(new MarkerOptions().position(PlzMayor).title("Plaza Mayor"));
-        final LatLng PalaReal = new LatLng(40.418134, -3.714430);
-        mMap.addMarker(new MarkerOptions().position(PalaReal).title("Palacio Real Madrid"));
-        final LatLng TDebod = new LatLng(40.424075, -3.717688);
-        mMap.addMarker(new MarkerOptions().position(TDebod).title("Templo de Debod"));
-        final LatLng PAlcala = new LatLng(40.420007, -3.688766);
-        mMap.addMarker(new MarkerOptions().position(PAlcala).title("Puerta de Alcalá"));
-        final LatLng PAtracc = new LatLng(40.411917, -3.750087);
-        mMap.addMarker(new MarkerOptions().position(PAtracc).title("Parque de Atracciones"));
-        final LatLng CBellasArtes = new LatLng(40.418336, -3.696545);
-        mMap.addMarker(new MarkerOptions().position(CBellasArtes).title("Círculo de Bellas Artes"));
-        final LatLng MReianSofia = new LatLng(40.407998, -3.694515);
-        mMap.addMarker(new MarkerOptions().position(MReianSofia).title("Museo Reina Sofia"));
-        final LatLng mTyssen = new LatLng(40.416026, -3.694930);
-        mMap.addMarker(new MarkerOptions().position(mTyssen).title("Museo Thyssen-Bornemisza"));
-        final LatLng GranVia = new LatLng(40.420278, -3.705495);
-        mMap.addMarker(new MarkerOptions().position(GranVia).title("Gran Vía"));
-        final LatLng PlzEspana = new LatLng(40.423402, -3.712172);
-        mMap.addMarker(new MarkerOptions().position(PlzEspana).title("Plaza de España"));
-        final LatLng Lavapies = new LatLng(40.408866, -3.701124);
-        mMap.addMarker(new MarkerOptions().position(Lavapies).title("Barrio de Lavapies"));
-        final LatLng Matadero = new LatLng(40.391633, -3.697514);
-        mMap.addMarker(new MarkerOptions().position(Matadero).title("Matadero de Madrid"));
-        final LatLng MRio = new LatLng(40.397388, -3.709733);
-        mMap.addMarker(new MarkerOptions().position(MRio).title("Madrid Río"));
-        final LatLng P7tetas = new LatLng(40.396989, -3.655977);
-        mMap.addMarker(new MarkerOptions().position(P7tetas).title("Parque 7 Tetas"));
-        final LatLng PlzCastilla = new LatLng(40.465849, -3.689517);
-        mMap.addMarker(new MarkerOptions().position(PlzCastilla).title("Plaza Castilla"));
-        final LatLng torresKio = new LatLng(40.466936, -3.688501);
-        mMap.addMarker(new MarkerOptions().position(torresKio).title("Torres Kio"));
-        final LatLng CuatroTorres = new LatLng(40.476376, -3.687764);
-        mMap.addMarker(new MarkerOptions().position(CuatroTorres).title("Cuatro Torres"));
-        final LatLng MCera = new LatLng(40.425145, -3.691336);
-        mMap.addMarker(new MarkerOptions().position(MCera).title("Museo de cera"));
-        final LatLng PlzColon = new LatLng(40.424817, -3.689113);
-        mMap.addMarker(new MarkerOptions().position(PlzColon).title("Plaza de Colón"));
-        final LatLng Ventas = new LatLng(40.432270, -3.663737);
-        mMap.addMarker(new MarkerOptions().position(Ventas).title("Plaza de Toros Las Ventas"));
-        final LatLng Bernabeu = new LatLng(40.452992, -3.688404);
-        mMap.addMarker(new MarkerOptions().position(Bernabeu).title("Santiago Bernabéu"));
-
-    }*/
 }

@@ -116,7 +116,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btnTypeSatelite = findViewById(R.id.btnSatelite);
         btnTypeHybrid = findViewById(R.id.btnHybrid);
         botonNavegacion = findViewById(R.id.navegacion);
-
         toolbar = findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.menu_superior);
         myRef = FirebaseDatabase.getInstance().getReference();

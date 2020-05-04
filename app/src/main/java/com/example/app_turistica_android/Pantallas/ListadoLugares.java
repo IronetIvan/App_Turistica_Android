@@ -40,7 +40,7 @@ public class ListadoLugares extends AppCompatActivity {
         ,ListadoLugaresHolder.class, referencia,ListadoLugares.this);*/
 
         recyclerView.setAdapter(adaptadorFirebase);
-        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),3,
+        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2,
                 LinearLayoutManager.VERTICAL, false));
     }
 }

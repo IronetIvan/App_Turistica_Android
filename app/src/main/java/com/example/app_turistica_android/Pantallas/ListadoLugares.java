@@ -2,6 +2,8 @@ package com.example.app_turistica_android.Pantallas;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,13 +23,15 @@ public class ListadoLugares extends AppCompatActivity {
     RecyclerView recyclerView;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_listado_lugares);
+        Toast.makeText(getApplicationContext(),"asad",Toast.LENGTH_SHORT).show();
         recyclerView = findViewById(R.id.listadolugares);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference referencia = database.getReference("lugares");
+        DatabaseReference referencia = database.getReference("lugares").child("defecto");
+
 
         AdaptadorFirebase adaptadorFirebase = new AdaptadorFirebase(Lugares.class, R.layout.item_listado_lugares
         ,ListadoLugaresHolder.class, referencia,ListadoLugares.this);
@@ -36,7 +40,7 @@ public class ListadoLugares extends AppCompatActivity {
         ,ListadoLugaresHolder.class, referencia,ListadoLugares.this);*/
 
         recyclerView.setAdapter(adaptadorFirebase);
-        recyclerView.setLayoutManager(new GridLayoutManager(ListadoLugares.this,3,
+        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),3,
                 LinearLayoutManager.VERTICAL, false));
     }
 }

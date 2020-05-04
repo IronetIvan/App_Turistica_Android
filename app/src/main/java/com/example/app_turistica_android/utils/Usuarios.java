@@ -77,4 +77,17 @@ public class Usuarios implements Serializable {
     public void setIntro(boolean intro) {
         this.intro = intro;
     }
+
+    @Override
+    public String toString() {
+        return "Usuarios{" +
+                "email='" + email + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", nombre_usuario='" + nombre_usuario + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", uid='" + uid + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", intro=" + intro +
+                '}';
+    }
 }

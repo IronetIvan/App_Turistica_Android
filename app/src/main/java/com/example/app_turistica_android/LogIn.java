@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.app_turistica_android.Explicacion.OnBoardActivity;
@@ -27,6 +28,10 @@ public class LogIn extends AppCompatActivity {
     Button btnInicio,btnInvitado;
     ImageButton btnRegistrar, btninicioGoogle ;
     EditText nombre, password;
+    RadioButton rSesion;
+
+    private boolean activarRadioB;
+    private static  final String Preference_Estado_RadioButton= "estado";
 
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
@@ -72,6 +77,16 @@ public class LogIn extends AppCompatActivity {
 
             }
         });
+
+        rSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(activarRadioB){
+                    rSesion.setChecked(false);
+                }
+                activarRadioB = rSesion.isChecked();
+            }
+        });
     }
 
     private void instancias() {
@@ -81,6 +96,8 @@ public class LogIn extends AppCompatActivity {
         nombre = findViewById(R.id.txtcorreo);
         password = findViewById(R.id.txtpassword);
         btnInvitado= findViewById(R.id.btnInvitado);
+        rSesion = findViewById(R.id.radioSesion);
+        activarRadioB = rSesion.isChecked(); //desactivado
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
     }
@@ -116,6 +133,7 @@ public class LogIn extends AppCompatActivity {
                             String user = email.substring(0, pos);
                             Toast.makeText(LogIn.this, "Bienvenido: " + nombre.getText(), Toast.LENGTH_LONG).show();
                             Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
+                            guardarPreferencias();
                             // sacas el uid del usuario logeado;
                             iniciarSesion.putExtra("uid",firebaseAuth.getCurrentUser().getUid());
                             LogIn.this.startActivity(iniciarSesion);
@@ -135,6 +153,7 @@ public class LogIn extends AppCompatActivity {
     }
     private void guardarPreferencias(){
         SharedPreferences preferences = getSharedPreferences("credenciales",MODE_PRIVATE);
+        preferences.edit().putBoolean(Preference_Estado_RadioButton,rSesion.isChecked()).apply();
 
         String usuario = nombre.getText().toString();
         String pass = password.getText().toString();

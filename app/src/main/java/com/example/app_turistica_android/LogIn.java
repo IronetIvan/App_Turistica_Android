@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -43,6 +44,7 @@ public class LogIn extends AppCompatActivity {
         btnInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                guardarPreferencias();
                 IniciarSesion();
             }
         });
@@ -117,6 +119,7 @@ public class LogIn extends AppCompatActivity {
                             // sacas el uid del usuario logeado;
                             iniciarSesion.putExtra("uid",firebaseAuth.getCurrentUser().getUid());
                             LogIn.this.startActivity(iniciarSesion);
+                            finish();
 
                         } else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {//si se presenta una colisión
@@ -129,5 +132,17 @@ public class LogIn extends AppCompatActivity {
                     }
                 });
 
+    }
+    private void guardarPreferencias(){
+        SharedPreferences preferences = getSharedPreferences("credenciales",MODE_PRIVATE);
+
+        String usuario = nombre.getText().toString();
+        String pass = password.getText().toString();
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("usuario",usuario);
+        editor.putString("pass",pass);
+
+        editor.commit();
     }
     }

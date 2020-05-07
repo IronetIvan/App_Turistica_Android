@@ -26,7 +26,7 @@ public class ListadoLugares extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_listado_lugares);
-        Toast.makeText(getApplicationContext(),"asad",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"Cargado correctamente!",Toast.LENGTH_SHORT).show();
         recyclerView = findViewById(R.id.listadolugares);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();

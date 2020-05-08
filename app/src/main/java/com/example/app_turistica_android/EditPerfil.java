@@ -66,7 +66,7 @@ public class EditPerfil extends AppCompatActivity {
         final String uid = getIntent().getExtras().getString("uid");
         final DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios").child(uid);
         Log.v("prueba", uid);
-     
+
         nodoUsuarios.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -84,7 +84,6 @@ public class EditPerfil extends AppCompatActivity {
                         txtPassword.setText(pass.getValue().toString());
                         txtCorreo.setText(correo.getValue().toString());
                         txtUsuario.setText(usuario.getValue().toString());
-
 
 
 
@@ -107,7 +106,9 @@ public class EditPerfil extends AppCompatActivity {
 
 
 
-
+    private void actDatos(){
+        
+    }
 
 
 

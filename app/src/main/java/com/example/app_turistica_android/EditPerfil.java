@@ -46,12 +46,10 @@ public class EditPerfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editperfil);
-
         instancias();
         acciones();
         cargarDatos1();
-        //traerDatos();
-        //actDatos();
+
     }
     private void instancias() {
         txtCorreo = findViewById(R.id.txtNombre);
@@ -63,39 +61,12 @@ public class EditPerfil extends AppCompatActivity {
 
     }
 
-    private void cargaDatos(){
-        final String uid = getIntent().getExtras().getString("uid");
-        myRef.getDatabase().getReference().child("usuarios");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if(uid!=null) {
-                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-
-                        Usuarios usuarios = snapshot.getValue(Usuarios.class);
-                        usuarios.getEmail(txtCorreo);
-                        usuarios.getNombre(txtUsuario);
-                        usuarios.getContraseña(txtPassword);
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(),"Error al cargar datos de usuario", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     private void cargarDatos1(){
         final String uid = getIntent().getExtras().getString("uid");
         final DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios").child(uid);
         Log.v("prueba", uid);
-        //txtCorreo.setText(nodoUsuarios.child("correo").getKey());
-        //txtUsuario.setText(nodoUsuarios.child("usuario").getKey());
-        //txtPassword.setText(nodoUsuarios.child("contraseña").getKey());
+     
         nodoUsuarios.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -103,16 +74,18 @@ public class EditPerfil extends AppCompatActivity {
                 if (dataSnapshot.getKey().equals(uid)){
                     Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
                     Iterator<DataSnapshot> iterator = iterable.iterator();
-                    //while (iterator.hasNext()){
+
                         DataSnapshot pass = iterator.next();
                         DataSnapshot correo = iterator.next();
                         DataSnapshot intro = iterator.next();
                         DataSnapshot uid = iterator.next();
                         DataSnapshot usuario = iterator.next();
-                        // el objeto json entero
+
                         txtPassword.setText(pass.getValue().toString());
                         txtCorreo.setText(correo.getValue().toString());
                         txtUsuario.setText(usuario.getValue().toString());
+
+
 
 
                         //txtPassword.setText(pass.getValue().toString());
@@ -121,7 +94,6 @@ public class EditPerfil extends AppCompatActivity {
                         //txtPassword.setText(actual.child("contraseña").getChildren().toString());
 
 
-                    //}
                 }
             }
 
@@ -138,47 +110,7 @@ public class EditPerfil extends AppCompatActivity {
 
 
 
-    /*private void traerDatos(){
 
-        myRef.child("usuarios").child("LNp8sYdWfzQRJmC6tdjsSW8PReA3").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                //String value = dataSnapshot.getValue(String.class);
-                //txtCorreo.setText(value);
-
-                if (dataSnapshot.exists()) {
-
-
-                    String correo = dataSnapshot.child("correo").getValue().toString();
-                    String usuario = dataSnapshot.child("usuario").getValue().toString();
-                    String contraseña = dataSnapshot.child("contraseña").getValue().toString();
-                    txtCorreo.setText(correo);
-                    txtUsuario.setText("Nombre usuario"+" "+usuario);
-                    txtPassword.setText(contraseña);
-
-
-
-                    /*for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-
-                        Usuarios user = dataSnapshot.getValue(Usuarios.class);
-                        String nombreUsuario = user.getNombre_usuario();
-
-                        Log.e("Nombre usuario",""+ nombreUsuario);
-                    }
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-    }*/
 
 
 

@@ -128,6 +128,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setPadding(10,10,10,185);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
 
         myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
             @Override

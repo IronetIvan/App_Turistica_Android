@@ -3,6 +3,7 @@ package com.example.app_turistica_android;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -92,38 +93,35 @@ public class EditPerfil extends AppCompatActivity {
         final String uid = getIntent().getExtras().getString("uid");
         final DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios").child(uid);
         Log.v("prueba", uid);
-        txtCorreo.setText(nodoUsuarios.child("correo").getKey());
-
-
-        //nodoUsuarios.child("correo").setValue(txtCorreo.getText().toString());
-        //nodoUsuarios.child("usuario").setValue(te).toString();
-        //String contraseña = nodoUsuarios.child("contraseña").getValue().toString();
-
-        /*nodoUsuarios.addValueEventListener(new ValueEventListener() {
+        //txtCorreo.setText(nodoUsuarios.child("correo").getKey());
+        //txtUsuario.setText(nodoUsuarios.child("usuario").getKey());
+        //txtPassword.setText(nodoUsuarios.child("contraseña").getKey());
+        nodoUsuarios.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //Log.v("firebase",dataSnapshot.getKey());
-                // nulo
+
                 if (dataSnapshot.getKey().equals(uid)){
                     Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
                     Iterator<DataSnapshot> iterator = iterable.iterator();
-                    while (iterator.hasNext()){
-                        DataSnapshot actual = iterator.next();
+                    //while (iterator.hasNext()){
+                        DataSnapshot pass = iterator.next();
+                        DataSnapshot correo = iterator.next();
+                        DataSnapshot intro = iterator.next();
+                        DataSnapshot uid = iterator.next();
+                        DataSnapshot usuario = iterator.next();
                         // el objeto json entero
-                        actual.getValue();
+                        txtPassword.setText(pass.getValue().toString());
+                        txtCorreo.setText(correo.getValue().toString());
+                        txtUsuario.setText(usuario.getValue().toString());
 
-                        String correo = actual.child("correo").getValue().toString();
-                        String usuario = actual.child("usuario").getValue().toString();
-                        String contraseña = actual.child("contraseña").getValue().toString();
-                        txtCorreo.setText(correo);
-                        txtUsuario.setText(usuario);
-                        txtPassword.setText(contraseña);
 
-                        /*String correo = dataSnapshot.child("correo").getValue().toString();
-                        String usuario = dataSnapshot.child("usuario").getValue().toString();
-                        String contraseña = dataSnapshot.child("contraseña").getValue().toString();
+                        //txtPassword.setText(pass.getValue().toString());
+                        //txtCorreo.setText(actual.child("correo").getValue());
+                        //txtUsuario.setText(actual.child("usuario").getChildren().toString());
+                        //txtPassword.setText(actual.child("contraseña").getChildren().toString());
 
-                    }
+
+                    //}
                 }
             }
 
@@ -131,7 +129,7 @@ public class EditPerfil extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(),"Error al cargar datos de usuario", Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
     }
 

@@ -93,8 +93,9 @@ public class PerfilUsuario extends AppCompatActivity {
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PerfilUsuario.this, MapsActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(PerfilUsuario.this, MapsActivity.class);
+                //startActivity(intent);
+                finish();
             }
         });
     }

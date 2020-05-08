@@ -59,6 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        uid = getIntent().getExtras().getString("uid");
         instancias();
         acciones();
 
@@ -103,6 +104,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (item.getItemId() == R.id.perfilusuario) {
                     Intent intent = new Intent(MapsActivity.this, PerfilUsuario.class);
                     intent.putExtra("uid",uid);
+                    //Log.v("prueba",uid);
                     startActivity(intent);
                     //Toast.makeText(MapsActivity.this, "Listado del usuario con opciones como (nombre de usuario, rutas, favoritos, cambiar email/password", Toast.LENGTH_LONG).show();
                 }

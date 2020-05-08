@@ -45,6 +45,7 @@ public class EditPerfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editperfil);
+
         instancias();
         acciones();
         cargarDatos1();
@@ -89,8 +90,16 @@ public class EditPerfil extends AppCompatActivity {
 
     private void cargarDatos1(){
         final String uid = getIntent().getExtras().getString("uid");
-        final DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios");
-        nodoUsuarios.addValueEventListener(new ValueEventListener() {
+        final DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios").child(uid);
+        Log.v("prueba", uid);
+        txtCorreo.setText(nodoUsuarios.child("correo").getKey());
+
+
+        //nodoUsuarios.child("correo").setValue(txtCorreo.getText().toString());
+        //nodoUsuarios.child("usuario").setValue(te).toString();
+        //String contraseña = nodoUsuarios.child("contraseña").getValue().toString();
+
+        /*nodoUsuarios.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //Log.v("firebase",dataSnapshot.getKey());
@@ -113,7 +122,7 @@ public class EditPerfil extends AppCompatActivity {
                         /*String correo = dataSnapshot.child("correo").getValue().toString();
                         String usuario = dataSnapshot.child("usuario").getValue().toString();
                         String contraseña = dataSnapshot.child("contraseña").getValue().toString();
-                        */
+
                     }
                 }
             }
@@ -122,7 +131,7 @@ public class EditPerfil extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(),"Error al cargar datos de usuario", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
     }
 

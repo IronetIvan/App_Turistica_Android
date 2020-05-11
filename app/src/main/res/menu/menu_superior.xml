@@ -8,11 +8,11 @@
     <item android:id="@+id/parques"
         android:title="Parques"/>
 
-    <item android:id="@+id/restaurantes"
-        android:title="Bares y Restaurantes"
+    <item android:id="@+id/lugaresOcio"
+        android:title="Lugares de Ocio"
         />
 
-    <item android:id="@+id/lugaresemblematicos"
-        android:title="Lugares Emblematicos"/>
+    <item android:id="@+id/lugaresInteres"
+        android:title="Lugares de interés"/>
 
 </menu>

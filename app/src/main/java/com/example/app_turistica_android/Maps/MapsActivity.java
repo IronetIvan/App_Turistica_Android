@@ -45,7 +45,7 @@ import java.util.ArrayList;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Button btnTypeSatelite, btnTypeHybrid;
+    private Button btnTypeSatelite, btnTypeHybrid, btnMuseos,btnParques, btnlugaresOcio, btnlugaresInteres;
     private Marker marcador;
     double lat = 0.0;
     double lng = 0.0;
@@ -85,6 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+
         botonNavegacion.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -120,6 +121,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         botonNavegacion = findViewById(R.id.navegacion);
         toolbar = findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.menu_superior);
+        btnMuseos = findViewById(R.id.museos);
+        btnParques = findViewById(R.id.parques);
+        btnlugaresOcio= findViewById(R.id.lugaresOcio);
+        btnlugaresInteres = findViewById(R.id.lugaresInteres);
         myRef = FirebaseDatabase.getInstance().getReference();
     }
 

@@ -51,6 +51,7 @@ public class EditPerfil extends AppCompatActivity {
         cargarDatos1();
 
     }
+
     private void instancias() {
         txtCorreo = findViewById(R.id.txtNombre);
         txtUsuario = findViewById(R.id.editText5);
@@ -62,7 +63,7 @@ public class EditPerfil extends AppCompatActivity {
     }
 
 
-    private void cargarDatos1(){
+    private void cargarDatos1() {
         final String uid = getIntent().getExtras().getString("uid");
         final DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios").child(uid);
         Log.v("prueba", uid);
@@ -71,26 +72,28 @@ public class EditPerfil extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.getKey().equals(uid)){
+                if (dataSnapshot.getKey().equals(uid)) {
                     Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
                     Iterator<DataSnapshot> iterator = iterable.iterator();
 
-                        DataSnapshot pass = iterator.next();
-                        DataSnapshot correo = iterator.next();
-                        DataSnapshot intro = iterator.next();
-                        DataSnapshot uid = iterator.next();
-                        DataSnapshot usuario = iterator.next();
+                    DataSnapshot pass = iterator.next();
+                    DataSnapshot correo = iterator.next();
+                    DataSnapshot intro = iterator.next();
+                    DataSnapshot uid = iterator.next();
+                    DataSnapshot usuario = iterator.next();
 
-                        txtPassword.setText(pass.getValue().toString());
-                        txtCorreo.setText(correo.getValue().toString());
-                        txtUsuario.setText(usuario.getValue().toString());
+                    txtPassword.setText(pass.getValue().toString());
+                    txtCorreo.setText(correo.getValue().toString());
+                    txtUsuario.setText(usuario.getValue().toString());
 
 
 
-                        //txtPassword.setText(pass.getValue().toString());
-                        //txtCorreo.setText(actual.child("correo").getValue());
-                        //txtUsuario.setText(actual.child("usuario").getChildren().toString());
-                        //txtPassword.setText(actual.child("contraseña").getChildren().toString());
+
+                    /*Map<String, Object> usuarioMap = new HashMap<>();
+                    usuarioMap.put("usuario", txtUsuario.getText());
+                    usuarioMap.put("contraseña", txtPassword.getText());
+                    nodoUsuarios.updateChildren(usuarioMap);*/
+
 
 
                 }
@@ -98,20 +101,11 @@ public class EditPerfil extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(),"Error al cargar datos de usuario", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error al cargar datos de usuario", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
-
-
-
-    private void actDatos(){
-        
-    }
-
-
-
 
 
 
@@ -120,14 +114,7 @@ public class EditPerfil extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
-                //actDatos();
-
-                //ActPerfil();
-
-
-                //Intent intent = new Intent(EditPerfil.this, OnBoardActivity.class);
-                //startActivity(intent);
+            //cargarDatos1();
 
             }
         });

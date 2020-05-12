@@ -119,6 +119,7 @@ public class EditPerfil extends AppCompatActivity {
             public void onClick(View v) {
                 actDatos();
                 Toast.makeText(getApplicationContext(),"Actualizado correctamente!",Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 

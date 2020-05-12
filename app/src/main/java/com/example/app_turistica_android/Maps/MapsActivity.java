@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -45,16 +46,18 @@ import java.util.ArrayList;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Button btnTypeSatelite, btnTypeHybrid, btnMuseos,btnParques, btnlugaresOcio, btnlugaresInteres;
+    private Button btnTypeSatelite, btnTypeHybrid;
+    private BottomNavigationView museos, parques, lugaresOcio, lugaresInteres;
     private Marker marcador;
     double lat = 0.0;
     double lng = 0.0;
     BottomNavigationView botonNavegacion;
     Toolbar toolbar;
     DatabaseReference myRef;
-    private ArrayList<Marker> tmpRealTimeMarkers= new ArrayList<>();
-    private ArrayList<Marker> realTimeMarkers= new ArrayList<>();
+    private ArrayList<Marker> tmpRealTimeMarkers = new ArrayList<>();
+    private ArrayList<Marker> realTimeMarkers = new ArrayList<>();
     String uid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +88,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+        /*museos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myRef.child("lugares").child("defecto").child("tipo").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (Marker marker : realTimeMarkers) {
+                            marker.remove();
+                        }
 
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Lugares lugares = snapshot.getValue(Lugares.class);
+                            Double latitud = lugares.getLatitud();
+                            Double longitud = lugares.getLongitud();
+                            String nombre = lugares.getNombre();
+                            String tipo = lugares.getTipo();
+                            tipo.equals("Museo");
+                            MarkerOptions markerOptions = new MarkerOptions();
+                            markerOptions.position(new LatLng(latitud, longitud));
+                            markerOptions.title(nombre);
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
+                            tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+
+
+                        }
+                        realTimeMarkers.clear();
+                        realTimeMarkers.addAll(tmpRealTimeMarkers);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });*/
         botonNavegacion.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -104,7 +143,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 if (item.getItemId() == R.id.perfilusuario) {
                     Intent intent = new Intent(MapsActivity.this, PerfilUsuario.class);
-                    intent.putExtra("uid",uid);
+                    intent.putExtra("uid", uid);
                     //Log.v("prueba",uid);
                     startActivity(intent);
                     //Toast.makeText(MapsActivity.this, "Listado del usuario con opciones como (nombre de usuario, rutas, favoritos, cambiar email/password", Toast.LENGTH_LONG).show();
@@ -121,35 +160,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         botonNavegacion = findViewById(R.id.navegacion);
         toolbar = findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.menu_superior);
-        btnMuseos = findViewById(R.id.museos);
-        btnParques = findViewById(R.id.parques);
-        btnlugaresOcio= findViewById(R.id.lugaresOcio);
-        btnlugaresInteres = findViewById(R.id.lugaresInteres);
+        museos = findViewById(R.id.museos);
+        parques = findViewById(R.id.parques);
+        lugaresOcio = findViewById(R.id.lugaresOcio);
+        lugaresInteres = findViewById(R.id.lugaresInteres);
         myRef = FirebaseDatabase.getInstance().getReference();
     }
-
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setPadding(10,10,10,185);
+        mMap.setPadding(10, 10, 10, 185);
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
         myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(Marker marker: realTimeMarkers){
+                for (Marker marker : realTimeMarkers) {
                     marker.remove();
                 }
 
-                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Lugares lugares = snapshot.getValue(Lugares.class);
                     Double latitud = lugares.getLatitud();
                     Double longitud = lugares.getLongitud();
                     String nombre = lugares.getNombre();
                     MarkerOptions markerOptions = new MarkerOptions();
-                    markerOptions.position(new LatLng(latitud,longitud));
+                    markerOptions.position(new LatLng(latitud, longitud));
                     markerOptions.title(nombre);
                     markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
                     tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
@@ -162,10 +200,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(),"Error al cargar las ubicaciones",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error al cargar las ubicaciones", Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() { //Creamos marcas FAV del usuario Click largo
@@ -253,7 +290,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         actUbicacion(location);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000,0,locListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 0, locListener);
     }
 
     public boolean hayPermisoLocalizacion() {

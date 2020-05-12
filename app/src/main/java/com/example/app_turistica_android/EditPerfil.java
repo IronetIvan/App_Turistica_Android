@@ -1,6 +1,8 @@
 package com.example.app_turistica_android;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -109,12 +111,12 @@ public class EditPerfil extends AppCompatActivity {
     }
 
 
+
     private void acciones() {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                //cargarDatos1();
                 actDatos();
                 Toast.makeText(getApplicationContext(),"Actualizado correctamente!",Toast.LENGTH_SHORT).show();
             }

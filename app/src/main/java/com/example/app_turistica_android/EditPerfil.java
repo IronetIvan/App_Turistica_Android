@@ -66,7 +66,7 @@ public class EditPerfil extends AppCompatActivity {
     private void cargarDatos1() {
         final String uid = getIntent().getExtras().getString("uid");
         final DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios").child(uid);
-        Log.v("prueba", uid);
+        //Log.v("prueba", uid);
 
         nodoUsuarios.addValueEventListener(new ValueEventListener() {
             @Override
@@ -88,14 +88,6 @@ public class EditPerfil extends AppCompatActivity {
 
 
 
-
-                    /*Map<String, Object> usuarioMap = new HashMap<>();
-                    usuarioMap.put("usuario", txtUsuario.getText());
-                    usuarioMap.put("contraseña", txtPassword.getText());
-                    nodoUsuarios.updateChildren(usuarioMap);*/
-
-
-
                 }
             }
 
@@ -107,6 +99,14 @@ public class EditPerfil extends AppCompatActivity {
 
     }
 
+    private void actDatos() {
+        final String uid = getIntent().getExtras().getString("uid");
+        final DatabaseReference actualizar = myRef.getDatabase().getReference().child("usuarios").child(uid);
+
+
+        actualizar.child("usuario").setValue(txtUsuario.getText().toString());
+        actualizar.child("contraseña").setValue(txtPassword.getText().toString());
+    }
 
 
     private void acciones() {
@@ -114,8 +114,9 @@ public class EditPerfil extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-            //cargarDatos1();
-
+                //cargarDatos1();
+                actDatos();
+                Toast.makeText(getApplicationContext(),"Actualizado correctamente!",Toast.LENGTH_SHORT).show();
             }
         });
 

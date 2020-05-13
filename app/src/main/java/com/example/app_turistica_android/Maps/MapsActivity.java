@@ -15,6 +15,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -88,43 +90,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        /*museos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myRef.child("lugares").child("defecto").child("tipo").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (Marker marker : realTimeMarkers) {
-                            marker.remove();
-                        }
 
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Lugares lugares = snapshot.getValue(Lugares.class);
-                            Double latitud = lugares.getLatitud();
-                            Double longitud = lugares.getLongitud();
-                            String nombre = lugares.getNombre();
-                            String tipo = lugares.getTipo();
-                            tipo.equals("Museo");
-                            MarkerOptions markerOptions = new MarkerOptions();
-                            markerOptions.position(new LatLng(latitud, longitud));
-                            markerOptions.title(nombre);
-                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
-                            tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
-
-
-                        }
-                        realTimeMarkers.clear();
-                        realTimeMarkers.addAll(tmpRealTimeMarkers);
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-            }
-        });*/
         botonNavegacion.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -154,6 +120,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
+
     private void instancias() {
         btnTypeSatelite = findViewById(R.id.btnSatelite);
         btnTypeHybrid = findViewById(R.id.btnHybrid);
@@ -165,6 +132,51 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         lugaresOcio = findViewById(R.id.lugaresOcio);
         lugaresInteres = findViewById(R.id.lugaresInteres);
         myRef = FirebaseDatabase.getInstance().getReference();
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.museos:
+                        Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_SHORT).show();
+                        myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (Marker marker : realTimeMarkers) {
+                                    marker.remove();
+                                }
+
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    Lugares lugares = snapshot.getValue(Lugares.class);
+                                    Double latitud = lugares.getLatitud();
+                                    Double longitud = lugares.getLongitud();
+                                    String nombre = lugares.getNombre();
+                                    String tipo = lugares.getTipo();
+                                    tipo.equals("Museo");
+                                    MarkerOptions markerOptions = new MarkerOptions();
+                                    markerOptions.position(new LatLng(latitud, longitud));
+                                    markerOptions.title(nombre);
+                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
+                                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+
+
+                                }
+                                realTimeMarkers.clear();
+                                realTimeMarkers.addAll(tmpRealTimeMarkers);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        break;
+                }
+
+                return true;
+            }
+        });
     }
 
 

@@ -137,6 +137,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
+                    
                     case R.id.museos:
                         Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_SHORT).show();
                         myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
@@ -153,6 +154,111 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     String nombre = lugares.getNombre();
                                     String tipo = lugares.getTipo();
                                     tipo.equals("Museo");
+                                    MarkerOptions markerOptions = new MarkerOptions();
+                                    markerOptions.position(new LatLng(latitud, longitud));
+                                    markerOptions.title(nombre);
+                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
+                                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+
+
+                                }
+                                realTimeMarkers.clear();
+                                realTimeMarkers.addAll(tmpRealTimeMarkers);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        break;
+                    case R.id.parques:
+                        Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_SHORT).show();
+                        myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (Marker marker : realTimeMarkers) {
+                                    marker.remove();
+                                }
+
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    Lugares lugares = snapshot.getValue(Lugares.class);
+                                    Double latitud = lugares.getLatitud();
+                                    Double longitud = lugares.getLongitud();
+                                    String nombre = lugares.getNombre();
+                                    String tipo = lugares.getTipo();
+                                    tipo.equals("Parque");
+                                    MarkerOptions markerOptions = new MarkerOptions();
+                                    markerOptions.position(new LatLng(latitud, longitud));
+                                    markerOptions.title(nombre);
+                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
+                                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+
+
+                                }
+                                realTimeMarkers.clear();
+                                realTimeMarkers.addAll(tmpRealTimeMarkers);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        break;
+                    case R.id.lugaresOcio:
+                        Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_SHORT).show();
+                        myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (Marker marker : realTimeMarkers) {
+                                    marker.remove();
+                                }
+
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    Lugares lugares = snapshot.getValue(Lugares.class);
+                                    Double latitud = lugares.getLatitud();
+                                    Double longitud = lugares.getLongitud();
+                                    String nombre = lugares.getNombre();
+                                    String tipo = lugares.getTipo();
+                                    tipo.equals("Ocio");
+                                    MarkerOptions markerOptions = new MarkerOptions();
+                                    markerOptions.position(new LatLng(latitud, longitud));
+                                    markerOptions.title(nombre);
+                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
+                                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+
+
+                                }
+                                realTimeMarkers.clear();
+                                realTimeMarkers.addAll(tmpRealTimeMarkers);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        break;
+                    case R.id.lugaresInteres:
+                        Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_SHORT).show();
+                        myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (Marker marker : realTimeMarkers) {
+                                    marker.remove();
+                                }
+
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    Lugares lugares = snapshot.getValue(Lugares.class);
+                                    Double latitud = lugares.getLatitud();
+                                    Double longitud = lugares.getLongitud();
+                                    String nombre = lugares.getNombre();
+                                    String tipo = lugares.getTipo();
+                                    tipo.equals("Calle");
                                     MarkerOptions markerOptions = new MarkerOptions();
                                     markerOptions.position(new LatLng(latitud, longitud));
                                     markerOptions.title(nombre);

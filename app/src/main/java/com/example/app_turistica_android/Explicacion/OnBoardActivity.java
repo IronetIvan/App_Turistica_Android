@@ -2,6 +2,8 @@ package com.example.app_turistica_android.Explicacion;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.animation.ArgbEvaluator;
@@ -105,6 +107,11 @@ public class OnBoardActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.btn_finish:
                 finish();
+                /*FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                //agrega el Fragment en el contenedor, en este caso el FrameLayout con id `FrameLayout`.
+                ft.add(R.id.map, new MapsActivity(),);
+                ft.commit();*/
                 Intent intent = new Intent(OnBoardActivity.this, MapsActivity.class);
                 startActivity(intent);
                 break;

@@ -15,4 +15,6 @@
     <item android:id="@+id/lugaresInteres"
         android:title="Lugares de interés"/>
 
+    <item android:id="@+id/todos"
+        android:title="Todos los lugares"/>
 </menu>

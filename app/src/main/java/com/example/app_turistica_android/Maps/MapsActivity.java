@@ -280,6 +280,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             }
                         });
                         break;
+                    case R.id.todos:
+                        Toast.makeText(getApplicationContext(), "Mostrando lugares de interés", Toast.LENGTH_SHORT).show();
+                        myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (Marker marker : realTimeMarkers) {
+                                    marker.remove();
+                                }
+
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    Lugares lugares = snapshot.getValue(Lugares.class);
+                                    Double latitud = lugares.getLatitud();
+                                    Double longitud = lugares.getLongitud();
+                                    String nombre = lugares.getNombre();
+                                    MarkerOptions markerOptions = new MarkerOptions();
+                                    markerOptions.position(new LatLng(latitud, longitud));
+                                    markerOptions.title(nombre);
+                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
+                                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+
+
+                                }
+                                realTimeMarkers.clear();
+                                realTimeMarkers.addAll(tmpRealTimeMarkers);
+                            }
+
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        break;
                 }
 
                 return true;

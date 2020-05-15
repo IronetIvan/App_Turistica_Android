@@ -137,7 +137,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    
+
                     case R.id.museos:
                         Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_SHORT).show();
                         myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {

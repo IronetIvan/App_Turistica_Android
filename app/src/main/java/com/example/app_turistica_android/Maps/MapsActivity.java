@@ -154,13 +154,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     Double longitud = lugares.getLongitud();
                                     String nombre = lugares.getNombre();
                                     String tipo = lugares.getTipo();
-                                    tipo.equals("Museo");
-                                    MarkerOptions markerOptions = new MarkerOptions();
-                                    markerOptions.position(new LatLng(latitud, longitud));
-                                    markerOptions.title(nombre);
-                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
-                                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
-
+                                    if(tipo.equals("Museo")){
+                                        MarkerOptions markerOptions = new MarkerOptions();
+                                        markerOptions.position(new LatLng(latitud, longitud));
+                                        markerOptions.title(nombre);
+                                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
+                                        tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+                                    }
 
                                 }
                                 realTimeMarkers.clear();
@@ -189,12 +189,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     Double longitud = lugares.getLongitud();
                                     String nombre = lugares.getNombre();
                                     String tipo = lugares.getTipo();
-                                    tipo.equals("Parque");
-                                    MarkerOptions markerOptions = new MarkerOptions();
-                                    markerOptions.position(new LatLng(latitud, longitud));
-                                    markerOptions.title(nombre);
-                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
-                                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+                                    if(tipo.equals("Parque")){
+                                        MarkerOptions markerOptions = new MarkerOptions();
+                                        markerOptions.position(new LatLng(latitud, longitud));
+                                        markerOptions.title(nombre);
+                                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
+                                        tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+                                    }
 
 
                                 }
@@ -224,13 +225,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     Double longitud = lugares.getLongitud();
                                     String nombre = lugares.getNombre();
                                     String tipo = lugares.getTipo();
-                                    tipo.equals("Ocio");
-                                    MarkerOptions markerOptions = new MarkerOptions();
-                                    markerOptions.position(new LatLng(latitud, longitud));
-                                    markerOptions.title(nombre);
-                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
-                                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
-
+                                    if(tipo.equals("Ocio")) {
+                                        MarkerOptions markerOptions = new MarkerOptions();
+                                        markerOptions.position(new LatLng(latitud, longitud));
+                                        markerOptions.title(nombre);
+                                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
+                                        tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+                                    }
 
                                 }
                                 realTimeMarkers.clear();
@@ -259,13 +260,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     Double longitud = lugares.getLongitud();
                                     String nombre = lugares.getNombre();
                                     String tipo = lugares.getTipo();
-                                    tipo.equals("Calle");
-                                    MarkerOptions markerOptions = new MarkerOptions();
-                                    markerOptions.position(new LatLng(latitud, longitud));
-                                    markerOptions.title(nombre);
-                                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
-                                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
-
+                                    if(tipo.equals("Calle")){
+                                        MarkerOptions markerOptions = new MarkerOptions();
+                                        markerOptions.position(new LatLng(latitud, longitud));
+                                        markerOptions.title(nombre);
+                                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.lugares));
+                                        tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+                                    }
 
                                 }
                                 realTimeMarkers.clear();

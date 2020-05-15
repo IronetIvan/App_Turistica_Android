@@ -139,7 +139,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 switch (item.getItemId()) {
 
                     case R.id.museos:
-                        Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Mostrando museos", Toast.LENGTH_SHORT).show();
                         myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -174,7 +174,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         });
                         break;
                     case R.id.parques:
-                        Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Mostrando parques", Toast.LENGTH_SHORT).show();
                         myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -209,7 +209,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         });
                         break;
                     case R.id.lugaresOcio:
-                        Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Mostrando lugares de ocio", Toast.LENGTH_SHORT).show();
                         myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -244,7 +244,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         });
                         break;
                     case R.id.lugaresInteres:
-                        Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Mostrando lugares de interés", Toast.LENGTH_SHORT).show();
                         myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -2,6 +2,8 @@ package com.example.app_turistica_android;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,24 +19,47 @@ import android.widget.Toast;
 
 import com.example.app_turistica_android.Explicacion.OnBoardActivity;
 import com.example.app_turistica_android.Maps.MapsActivity;
+import com.example.app_turistica_android.Pantallas.ListadoLugares;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LogIn extends AppCompatActivity {
 
-    Button btnInicio,btnInvitado;
-    ImageButton btnRegistrar, btninicioGoogle ;
+    Button btnInicio, btnInvitado;
+    ImageButton btnRegistrar, btninicioGoogle;
     EditText nombre, password;
     RadioButton rSesion;
 
     private boolean activarRadioB;
-    private static  final String Preference_Estado_RadioButton= "estado";
+    private static final String Preference_Estado_RadioButton = "estado";
 
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
+    private GoogleSignInClient mGoogleSignInClient;
+    private final static int RC_SIGN_IN = 123;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user!=null){
+            Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+            startActivity(intent);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +67,70 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         instancias();
         acciones();
+        createRequest();
+    }
 
+    //Metodo Peticion Google
+    private void createRequest() {
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+    }
+
+    //Metodo Intent Pantalla para la seleccion de correo de Google
+    private void GooglesignIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    //Metodo Google
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+                // ...
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                            /*FragmentManager fm = getSupportFragmentManager();
+                            FragmentTransaction ft = fm.beginTransaction();
+                            ft.commit();
+                            Intent intent = new Intent(getApplicationContext(), ListadoLugares.class);
+                            startActivity(intent);*/
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(LogIn.this, "Autenticacion Fallida", Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
+                    }
+                });
     }
 
     private void acciones() {
@@ -61,30 +149,28 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
-
-        btninicioGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         btnInvitado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LogIn.this, OnBoardActivity.class);
                 startActivity(intent);
-
             }
         });
 
         rSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(activarRadioB){
+                if (activarRadioB) {
                     rSesion.setChecked(false);
                 }
                 activarRadioB = rSesion.isChecked();
+            }
+        });
+
+        btninicioGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GooglesignIn();
             }
         });
     }
@@ -95,15 +181,14 @@ public class LogIn extends AppCompatActivity {
         btninicioGoogle = findViewById(R.id.btninicioGoogle);
         nombre = findViewById(R.id.txtcorreo);
         password = findViewById(R.id.txtpassword);
-        btnInvitado= findViewById(R.id.btnInvitado);
+        btnInvitado = findViewById(R.id.btnInvitado);
         rSesion = findViewById(R.id.radioSesion);
         activarRadioB = rSesion.isChecked(); //desactivado
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
     }
 
-
-    private void IniciarSesion(){
+    private void IniciarSesion() {
 
         final String email = nombre.getText().toString().trim();
         String passwd = password.getText().toString().trim();
@@ -135,7 +220,7 @@ public class LogIn extends AppCompatActivity {
                             Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
                             guardarPreferencias();
                             // sacas el uid del usuario logeado;
-                            iniciarSesion.putExtra("uid",firebaseAuth.getCurrentUser().getUid());
+                            iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());
                             LogIn.this.startActivity(iniciarSesion);
                             finish();
 
@@ -151,17 +236,18 @@ public class LogIn extends AppCompatActivity {
                 });
 
     }
-    private void guardarPreferencias(){
-        SharedPreferences preferences = getSharedPreferences("credenciales",MODE_PRIVATE);
-        preferences.edit().putBoolean(Preference_Estado_RadioButton,rSesion.isChecked()).apply();
+
+    private void guardarPreferencias() {
+        SharedPreferences preferences = getSharedPreferences("credenciales", MODE_PRIVATE);
+        preferences.edit().putBoolean(Preference_Estado_RadioButton, rSesion.isChecked()).apply();
 
         String usuario = nombre.getText().toString();
         String pass = password.getText().toString();
 
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("usuario",usuario);
-        editor.putString("pass",pass);
+        editor.putString("usuario", usuario);
+        editor.putString("pass", pass);
 
         editor.commit();
     }
-    }
+}

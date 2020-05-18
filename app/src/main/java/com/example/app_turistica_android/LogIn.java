@@ -50,7 +50,7 @@ public class LogIn extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private final static int RC_SIGN_IN = 123;
 
-    @Override
+    /*@Override
     protected void onStart() {
         super.onStart();
 
@@ -59,7 +59,7 @@ public class LogIn extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
             startActivity(intent);
         }
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +115,14 @@ public class LogIn extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            //FirebaseUser user = firebaseAuth.getCurrentUser();
+                            Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
+                            guardarPreferencias();
+
+                            // sacas el uid del usuario logeado;
+                            iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());
+                            LogIn.this.startActivity(iniciarSesion);
+                            finish();
 
                             /*FragmentManager fm = getSupportFragmentManager();
                             FragmentTransaction ft = fm.beginTransaction();

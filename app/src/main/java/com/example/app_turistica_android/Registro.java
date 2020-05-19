@@ -52,7 +52,7 @@ public class Registro extends AppCompatActivity {
 
     private void registarUsuarios() {
         String email = txtCorreo.getText().toString().trim();
-        String contrseña = txtPassword.getText().toString().trim();
+        String contrasenia = txtPassword.getText().toString().trim();
         String confirContra = txtConfirPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
@@ -60,19 +60,20 @@ public class Registro extends AppCompatActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(contrseña)) {
+        if (TextUtils.isEmpty(contrasenia)) {
             Toast.makeText(this, "Se debe ingresar una contraseña", Toast.LENGTH_SHORT).show();
             return;
         }
-        /*if(contrseña != confirContra){
+        if(contrasenia != confirContra){
             Toast.makeText(this,"Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-            return; validar contraseña repetidas ERROR
-        }*/
+            return;
+            //validar contraseña repetidas ERROR
+        }
 
         progressDialog.setMessage("Realizando registro en linea...");
         progressDialog.show();
 
-        firebaseAuth.createUserWithEmailAndPassword(email, contrseña)
+        firebaseAuth.createUserWithEmailAndPassword(email, contrasenia)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {

@@ -83,18 +83,7 @@
                 android:layout_marginBottom="30dp"
                 android:textSize="16dp"/>
 
-            <Button
-                android:id="@+id/btnInvitado"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/button_rounded"
-                android:text="Entrar como invitado"
-                android:elevation="15dp"
-                android:layout_marginBottom="30dp"
-                android:textSize="16dp"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

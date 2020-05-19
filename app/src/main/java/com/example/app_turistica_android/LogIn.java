@@ -37,7 +37,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LogIn extends AppCompatActivity {
 
-    Button btnInicio, btnInvitado;
+    Button btnInicio;
     ImageButton btnRegistrar, btninicioGoogle;
     EditText nombre, password;
     RadioButton rSesion;
@@ -156,13 +156,6 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
-        btnInvitado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LogIn.this, OnBoardActivity.class);
-                startActivity(intent);
-            }
-        });
 
         rSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,7 +181,6 @@ public class LogIn extends AppCompatActivity {
         btninicioGoogle = findViewById(R.id.btninicioGoogle);
         nombre = findViewById(R.id.txtcorreo);
         password = findViewById(R.id.txtpassword);
-        btnInvitado = findViewById(R.id.btnInvitado);
         rSesion = findViewById(R.id.radioSesion);
         activarRadioB = rSesion.isChecked(); //desactivado
         firebaseAuth = FirebaseAuth.getInstance();

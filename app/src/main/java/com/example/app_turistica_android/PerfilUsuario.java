@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_turistica_android.Maps.MapsActivity;
+import com.example.app_turistica_android.Pantallas.ListadoFavoritos;
+import com.example.app_turistica_android.Pantallas.ListadoLugares;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class PerfilUsuario extends AppCompatActivity {
 
-    LinearLayout misRutas, favoritos, ayudaCuenta, editarPerfil,cerrarSesion;
+    LinearLayout favoritos, ayudaCuenta, editarPerfil,cerrarSesion;
     FloatingActionButton volver;
     FirebaseAuth mAuth;
     DatabaseReference myRef;
@@ -39,7 +41,6 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private void instancias() {
-        misRutas = findViewById(R.id.btnMisRutas);
         favoritos = findViewById(R.id.btnFavoritos);
         ayudaCuenta = findViewById(R.id.btnAyuda);
         editarPerfil = findViewById(R.id.btnEditarPerfil);
@@ -50,17 +51,13 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private void acciones() {
-        misRutas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(PerfilUsuario.this,"Muestra Rutas del usuario", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         favoritos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PerfilUsuario.this,"Permite al usuario ver sus rutas favoritas", Toast.LENGTH_SHORT).show();
+                Intent intentFavoritos = new Intent(PerfilUsuario.this, ListadoFavoritos.class);
+                startActivity(intentFavoritos);
+                //Toast.makeText(PerfilUsuario.this,"Permite al usuario ver sus rutas favoritas", Toast.LENGTH_SHORT).show();
             }
         });
 

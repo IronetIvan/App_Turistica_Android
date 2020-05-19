@@ -9,9 +9,9 @@
         android:title="Lugares"
         android:icon="@drawable/lugar"/>
 
-    <item android:id="@+id/addruta"
-        android:title="Agregar Ruta"
-        android:icon="@drawable/anadiruta"/>
+    <item android:id="@+id/chat"
+        android:title="Chat"
+        android:icon="@drawable/charla"/>
 
     <item android:id="@+id/perfilusuario"
         android:title="Perfil"

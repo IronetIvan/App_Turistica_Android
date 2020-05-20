@@ -22,10 +22,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Iterator;
+
 public class PerfilUsuario extends AppCompatActivity {
 
     LinearLayout favoritos, ayudaCuenta, editarPerfil,cerrarSesion;
     FloatingActionButton volver;
+    TextView txtUsuario;
     FirebaseAuth mAuth;
     DatabaseReference myRef;
     String uid;
@@ -37,10 +40,12 @@ public class PerfilUsuario extends AppCompatActivity {
         uid = getIntent().getExtras().getString("uid");
         instancias();
         acciones();
+        cargarDatos1();
 
     }
 
     private void instancias() {
+        txtUsuario = findViewById(R.id.txtUsuario);
         favoritos = findViewById(R.id.btnFavoritos);
         ayudaCuenta = findViewById(R.id.btnAyuda);
         editarPerfil = findViewById(R.id.btnEditarPerfil);
@@ -93,6 +98,37 @@ public class PerfilUsuario extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    private void cargarDatos1() {
+        final String uid = getIntent().getExtras().getString("uid");
+        final DatabaseReference nodoUsuarios = myRef.getDatabase().getReference().child("usuarios").child(uid);
+        //Log.v("prueba", uid);
+
+        nodoUsuarios.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.getKey().equals(uid)) {
+                    Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
+                    Iterator<DataSnapshot> iterator = iterable.iterator();
+
+                    DataSnapshot pass = iterator.next();
+                    DataSnapshot correo = iterator.next();
+                    DataSnapshot intro = iterator.next();
+                    DataSnapshot uid = iterator.next();
+                    DataSnapshot usuario = iterator.next();
+
+                    txtUsuario.setText(usuario.getValue().toString());
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Error al cargar datos de usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 }

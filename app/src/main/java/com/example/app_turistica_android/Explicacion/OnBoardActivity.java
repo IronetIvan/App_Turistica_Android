@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.app_turistica_android.LogIn;
 import com.example.app_turistica_android.Maps.MapsActivity;
 import com.example.app_turistica_android.R;
 
@@ -112,7 +113,7 @@ public class OnBoardActivity extends AppCompatActivity implements View.OnClickLi
                 //agrega el Fragment en el contenedor, en este caso el FrameLayout con id `FrameLayout`.
                 ft.add(R.id.map, new MapsActivity(),);
                 ft.commit();*/
-                Intent intent = new Intent(OnBoardActivity.this, MapsActivity.class);
+                Intent intent = new Intent(OnBoardActivity.this, LogIn.class);
                 startActivity(intent);
                 break;
         }

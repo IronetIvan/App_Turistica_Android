@@ -15,10 +15,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.app_turistica_android.Explicacion.OnBoardActivity;
+import com.example.app_turistica_android.utils.Usuarios;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -79,6 +82,10 @@ public class Registro extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(Registro.this, "Se ha registrado el usuario con el email: " + txtCorreo.getText(), Toast.LENGTH_LONG).show();
+                            DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("usuarios").child(firebaseAuth.getUid());
+                            // creo un objeto de tipo usuario;
+                            Usuarios u = new Usuarios();
+                            database.setValue(u);
                         } else {
                             Toast.makeText(Registro.this, "Se ha registrado el usuario", Toast.LENGTH_LONG).show();
                         }

@@ -68,8 +68,7 @@
                 android:layout_height="wrap_content"
                 android:text="No cerrar sesión"
                 android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"
-                />
+                android:layout_marginBottom="10dp"/>
 
             <Button
                 android:id="@+id/btnInicio"
@@ -103,12 +102,9 @@
                     android:src="@drawable/adduser"
                     android:background="#d8000000"
                     android:layout_marginLeft="50dp"
-                    android:id="@+id/btnRegistrar"
-                    />
+                    android:id="@+id/btnRegistrar"/>
 
             </LinearLayout>
-
-
 
         </LinearLayout>
 

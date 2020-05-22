@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/negro1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/add"
+            android:layout_marginTop="60dp"></ImageView>
+
+        <EditText
+            android:id="@+id/txtEmailRegistro1"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Introduce correo"></EditText>
+
+        <EditText
+            android:id="@+id/txtUsuarioRegistro1"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Introduce nombre usuario"></EditText>
+
+        <EditText
+            android:id="@+id/txtPasswordRegistro1"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Introduce contraseña"></EditText>
+
+        <EditText
+            android:id="@+id/txtPasswordConfRegistro1"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Confirmar contraseña"></EditText>
+
+        <Button
+            android:id="@+id/botonRegistro1"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Registar"></Button>
+
+    </LinearLayout>
+
+</LinearLayout>

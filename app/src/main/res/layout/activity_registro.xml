@@ -37,7 +37,7 @@
 
 
     <EditText
-        android:id="@+id/txtNombre"
+        android:id="@+id/txtNombreRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -45,7 +45,7 @@
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Introduce correo usuario"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         android:textColorHint="#ccc"/>
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/txtNombreUsuarioRegistro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreRegistro"
         android:background="@drawable/cuadros_texto"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -79,7 +79,7 @@
         android:textColorHint="#ccc"/>
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/txtPassworRegistro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -91,7 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreUsuarioRegistro"
         android:background="@drawable/cuadros_texto"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -99,7 +99,7 @@
         android:padding="10dp"
         android:textColorHint="#ccc"/>
     <EditText
-        android:id="@+id/editext8"
+        android:id="@+id/txtConfirPassRegsitro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -111,29 +111,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editText7"
+        app:layout_constraintTop_toBottomOf="@id/txtPassworRegistro"
         android:background="@drawable/cuadros_texto"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="300dp"
         android:padding="10dp"
         android:textColorHint="#ccc"/>
 
 
     <Button
-        android:id="@+id/btnRegistrar"
+        android:id="@+id/btnRegistrarRegistro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/button_rounded"
         android:text="REGISTRAR"
-        app:layout_constraintBottom_toBottomOf="@+id/editext8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintTop_toBottomOf="@+id/txtConfirPassRegsitro" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

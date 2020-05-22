@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -54,9 +55,9 @@ public class Registro extends AppCompatActivity {
     }
 
     private void registarUsuarios() {
-        String email = txtCorreo.getText().toString().trim();
-        String contrasenia = txtPassword.getText().toString().trim();
-        String confirContra = txtConfirPassword.getText().toString().trim();
+        final String email = txtCorreo.getText().toString().trim();
+        final String contrasenia = txtPassword.getText().toString().trim();
+        final String confirContra = txtConfirPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Se debe ingresar un usuario", Toast.LENGTH_SHORT).show();
@@ -81,11 +82,22 @@ public class Registro extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             Toast.makeText(Registro.this, "Se ha registrado el usuario con el email: " + txtCorreo.getText(), Toast.LENGTH_LONG).show();
-                            DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("usuarios").child(firebaseAuth.getUid());
+                            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("usuarios");
+                            DatabaseReference userRef = myRef.child(firebaseAuth.getCurrentUser().getUid());
+                            userRef.child("correo").setValue(txtCorreo);
+                            userRef.child("contraseña").setValue(txtPassword);
+                            userRef.child("usuario").setValue(txtNombreUsuario);
+                            userRef.child("uid").getKey();
+                            userRef.child("intro").setValue(true);
+
+
+
+                            //DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("usuarios").child(firebaseAuth.getUid());
                             // creo un objeto de tipo usuario;
-                            Usuarios u = new Usuarios();
-                            database.setValue(u);
+                            //Usuarios u = new Usuarios();
+                            //database.setValue(u);
                         } else {
                             Toast.makeText(Registro.this, "Se ha registrado el usuario", Toast.LENGTH_LONG).show();
                         }

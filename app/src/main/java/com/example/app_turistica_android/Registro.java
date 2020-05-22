@@ -84,14 +84,14 @@ public class Registro extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             Toast.makeText(Registro.this, "Se ha registrado el usuario con el email: " + txtCorreo.getText(), Toast.LENGTH_LONG).show();
-                            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("usuarios");
+                            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("usuarios");
                             DatabaseReference userRef = myRef.child(firebaseAuth.getCurrentUser().getUid());
-                            userRef.child("correo").setValue(txtCorreo);
-                            userRef.child("contraseña").setValue(txtPassword);
-                            userRef.child("usuario").setValue(txtNombreUsuario);
-                            userRef.child("uid").getKey();
-                            userRef.child("intro").setValue(true);
-
+                            String correo = txtCorreo.getText().toString();
+                            String contrasenia = txtPassword.getText().toString();
+                            String nombreUsuario = txtNombreUsuario.getText().toString();
+                            String uid = firebaseAuth.getCurrentUser().getUid().toString();
+                            Usuarios u = new Usuarios(correo,contrasenia,nombreUsuario,uid);
+                            myRef.push().setValue(u);
 
 
                             //DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("usuarios").child(firebaseAuth.getUid());

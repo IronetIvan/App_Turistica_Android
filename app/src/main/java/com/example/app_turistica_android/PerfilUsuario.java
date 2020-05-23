@@ -114,8 +114,6 @@ public class PerfilUsuario extends AppCompatActivity {
 
                     DataSnapshot pass = iterator.next();
                     DataSnapshot correo = iterator.next();
-                    DataSnapshot intro = iterator.next();
-                    DataSnapshot uid = iterator.next();
                     DataSnapshot usuario = iterator.next();
 
                     txtUsuario.setText(usuario.getValue().toString());

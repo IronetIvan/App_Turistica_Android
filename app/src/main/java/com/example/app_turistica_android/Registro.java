@@ -85,7 +85,7 @@ public class Registro extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
+                            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
 
                             Toast.makeText(Registro.this, "Se ha registrado el usuario con el email: " + txtCorreo.getText().toString(), Toast.LENGTH_LONG).show();
 
@@ -121,7 +121,7 @@ public class Registro extends AppCompatActivity {
 
                         } else {
                             Toast.makeText(Registro.this, "No se ha registrado el usuario", Toast.LENGTH_LONG).show();
-                            //System.out.println("NO HAS ENTRADOOOOOOO");
+                            System.out.println("NO HAS ENTRADOOOOOOO");
                         }
                         //progressDialog.dismiss();
                     }

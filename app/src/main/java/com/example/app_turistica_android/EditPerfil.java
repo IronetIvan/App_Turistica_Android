@@ -80,8 +80,6 @@ public class EditPerfil extends AppCompatActivity {
 
                     DataSnapshot pass = iterator.next();
                     DataSnapshot correo = iterator.next();
-                    DataSnapshot intro = iterator.next();
-                    DataSnapshot uid = iterator.next();
                     DataSnapshot usuario = iterator.next();
 
                     txtPassword.setText(pass.getValue().toString());
@@ -107,7 +105,7 @@ public class EditPerfil extends AppCompatActivity {
 
 
         actualizar.child("usuario").setValue(txtUsuario.getText().toString());
-        actualizar.child("contraseña").setValue(txtPassword.getText().toString());
+        actualizar.child("contrasenia").setValue(txtPassword.getText().toString());
     }
 
 

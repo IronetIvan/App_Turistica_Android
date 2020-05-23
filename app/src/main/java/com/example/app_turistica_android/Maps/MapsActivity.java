@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+import com.example.app_turistica_android.Pantallas.Chat;
 import com.example.app_turistica_android.Pantallas.ListadoLugares;
 import com.example.app_turistica_android.PerfilUsuario;
 import com.example.app_turistica_android.R;
@@ -95,8 +96,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         botonNavegacion.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-
                 if (item.getItemId() == R.id.mapas) {
                     Intent intent = new Intent(MapsActivity.this, MapsActivity.class);
                     startActivity(intent);
@@ -106,14 +105,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     startActivity(intentLugares);
                 }
                 if (item.getItemId() == R.id.chat) {
-                    Toast.makeText(MapsActivity.this, "Pantalla para agregar una ruta", Toast.LENGTH_LONG).show();
+                    Intent intentChat = new Intent(MapsActivity.this, Chat.class);
+                    startActivity(intentChat);
                 }
                 if (item.getItemId() == R.id.perfilusuario) {
                     Intent intent = new Intent(MapsActivity.this, PerfilUsuario.class);
                     intent.putExtra("uid", uid);
                     //Log.v("prueba",uid);
                     startActivity(intent);
-                    //Toast.makeText(MapsActivity.this, "Listado del usuario con opciones como (nombre de usuario, rutas, favoritos, cambiar email/password", Toast.LENGTH_LONG).show();
                 }
 
                 return true;

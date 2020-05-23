@@ -106,9 +106,9 @@ public class Registro extends AppCompatActivity {
                 if(validarEmail(txtCorreo) == true){
                     registarUsuarios();
                     vaciarCampos();
-                    /*Intent intent = new Intent(Registro.this, OnBoardActivity.class);
+                    Intent intent = new Intent(Registro.this, OnBoardActivity.class);
                     startActivity(intent);
-                    finish();*/
+                    finish();
                 }
 
 

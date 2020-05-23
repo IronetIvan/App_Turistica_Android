@@ -62,6 +62,7 @@ public class LogIn extends AppCompatActivity {
             Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
             iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());
             LogIn.this.startActivity(iniciarSesion);
+            finish();
 
         }*/
 
@@ -115,6 +116,7 @@ public class LogIn extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            guardarEstado();
                             // Sign in success, update UI with the signed-in user's information
                             //FirebaseUser user = firebaseAuth.getCurrentUser();
                             Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
@@ -219,15 +221,17 @@ public class LogIn extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checking if success
                         if (task.isSuccessful()) {
+
                             int pos = email.indexOf("@");
                             String user = email.substring(0, pos);
-                            guardarEstado();
+
                             Toast.makeText(LogIn.this, "Bienvenido: " + nombre.getText(), Toast.LENGTH_LONG).show();
                             Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
-                            // sacas el uid del usuario logeado;
-                            iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());
+                            iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());  // sacas el uid del usuario logeado;
                             LogIn.this.startActivity(iniciarSesion);
                             finish();
+                            //guardarEstado(); //Da igual donde se ponga da NullPointer
+
 
                         } else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {//si se presenta una colisión

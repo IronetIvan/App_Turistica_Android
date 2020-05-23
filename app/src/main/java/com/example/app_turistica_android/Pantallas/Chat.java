@@ -83,6 +83,7 @@ public class Chat extends AppCompatActivity {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
+
             }
         });
 
@@ -91,6 +92,7 @@ public class Chat extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 MensajeRecibir m = dataSnapshot.getValue(MensajeRecibir.class);
                 adapterMensajes.addMensaje(m);
+                ScrollBar();
             }
 
             @Override

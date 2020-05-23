@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -20,9 +21,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,12 +53,12 @@ public class Registro extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPasswordRegistro1);
         txtConfirPassword = findViewById(R.id.txtPasswordConfRegistro1);
         btnRegsitrarse = findViewById(R.id.botonRegistro1);
-        firebaseAuth = firebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
     }
 
     private void registarUsuarios() {
-        final String email = txtCorreo.getText().toString().trim();
+        String email = txtCorreo.getText().toString().trim();
         String contrasenia = txtPassword.getText().toString().trim();
         String confirContra = txtConfirPassword.getText().toString().trim();
 
@@ -73,27 +77,53 @@ public class Registro extends AppCompatActivity {
             //validar contraseña repetidas ERROR
         }*/
 
-        progressDialog.setMessage("Realizando registro en linea...");
-        progressDialog.show();
+        //progressDialog.setMessage("Realizando registro en linea...");
+        //progressDialog.show();
 
         firebaseAuth.createUserWithEmailAndPassword(email, contrasenia)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            //System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
+
                             Toast.makeText(Registro.this, "Se ha registrado el usuario con el email: " + txtCorreo.getText().toString(), Toast.LENGTH_LONG).show();
 
-                            DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("usuarios").child(firebaseAuth.getUid());
+                            String correo = txtCorreo.getText().toString();
+                            String usuario = txtNombreUsuario.getText().toString();
+                            String passwd = txtPassword.getText().toString();
+
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("correo",correo);
+                            map.put("usuario",usuario);
+                            map.put("contrasenia",passwd);
+                            String uid = firebaseAuth.getCurrentUser().getUid();
+
+                            //FirebaseUser userFirebase = firebaseAuth.getCurrentUser();
+                            //userFirebase.getUid();
+
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            System.out.println(uid);
+                            DatabaseReference myRef = database.getReference("usuarios").child(uid);
+                            myRef.setValue(map);
+
+
+
+                            /*DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("usuarios");
                             // creo un objeto de tipo usuario;
-                            Usuarios u = new Usuarios();
-                            database.setValue(u);
+                            String correo = txtCorreo.getText().toString();
+                            String usuario = txtNombreUsuario.getText().toString();
+                            String passwd = txtPassword.getText().toString();
+                            Usuarios u = new Usuarios(correo,usuario,passwd);
+                            database.setValue("aaaaaaaaaa");*/
 
 
 
                         } else {
                             Toast.makeText(Registro.this, "No se ha registrado el usuario", Toast.LENGTH_LONG).show();
+                            //System.out.println("NO HAS ENTRADOOOOOOO");
                         }
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
                     }
                 });
     }
@@ -105,7 +135,7 @@ public class Registro extends AppCompatActivity {
             public void onClick(View v) {
                 if(validarEmail(txtCorreo) == true){
                     registarUsuarios();
-                    vaciarCampos();
+                    //vaciarCampos();
                     Intent intent = new Intent(Registro.this, OnBoardActivity.class);
                     startActivity(intent);
                     finish();

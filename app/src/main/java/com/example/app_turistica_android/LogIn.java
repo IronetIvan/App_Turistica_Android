@@ -41,31 +41,18 @@ public class LogIn extends AppCompatActivity {
     Button btnInicio;
     ImageButton btnRegistrar, btninicioGoogle;
     EditText nombre, password;
-    RadioButton rSesion;
 
-    private Boolean activo;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
 
     private final static int RC_SIGN_IN = 123;
-    private static final  String PREFERNCIAS = "credenciales";
-    private static final String PREFERNCIA_ESTADO = "estadosesion";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        /*if (obtenerEstado()){
-            Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
-            iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());
-            LogIn.this.startActivity(iniciarSesion);
-            finish();
-
-        }*/
-
         instancias();
         acciones();
         createRequest();
@@ -116,22 +103,15 @@ public class LogIn extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            guardarEstado();
                             // Sign in success, update UI with the signed-in user's information
                             //FirebaseUser user = firebaseAuth.getCurrentUser();
                             Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
-                            //guardarPreferencias();
+
 
                             // sacas el uid del usuario logeado;
                             iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());
                             LogIn.this.startActivity(iniciarSesion);
                             finish();
-
-                            /*FragmentManager fm = getSupportFragmentManager();
-                            FragmentTransaction ft = fm.beginTransaction();
-                            ft.commit();
-                            Intent intent = new Intent(getApplicationContext(), ListadoLugares.class);
-                            startActivity(intent);*/
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -147,12 +127,6 @@ public class LogIn extends AppCompatActivity {
         btnInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (obtenerEstado()) {
-                    Toast.makeText(LogIn.this, "estado boton: true", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(LogIn.this, "estado boton: false", Toast.LENGTH_SHORT).show();
-                }
                 IniciarSesion();
             }
         });
@@ -161,17 +135,6 @@ public class LogIn extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LogIn.this, Registro.class);
                 startActivity(intent);
-            }
-        });
-
-        rSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (activo) {
-                    rSesion.setChecked(false);
-                }
-                activo = rSesion.isChecked();
-
             }
         });
 
@@ -189,8 +152,6 @@ public class LogIn extends AppCompatActivity {
         btninicioGoogle = findViewById(R.id.btninicioGoogle);
         nombre = findViewById(R.id.txtcorreo);
         password = findViewById(R.id.txtpassword);
-        rSesion = findViewById(R.id.radioSesion);
-        activo = rSesion.isChecked(); //Inicia el rSesion DESACTIVADO
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
     }
@@ -221,16 +182,13 @@ public class LogIn extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checking if success
                         if (task.isSuccessful()) {
-
                             int pos = email.indexOf("@");
                             String user = email.substring(0, pos);
-
                             Toast.makeText(LogIn.this, "Bienvenido: " + nombre.getText(), Toast.LENGTH_LONG).show();
                             Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
                             iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());  // sacas el uid del usuario logeado;
                             LogIn.this.startActivity(iniciarSesion);
                             finish();
-                            //guardarEstado(); //Da igual donde se ponga da NullPointer
 
 
                         } else {
@@ -246,17 +204,20 @@ public class LogIn extends AppCompatActivity {
 
     }
 
-    public void guardarEstado(){
-        SharedPreferences preferences = getSharedPreferences(PREFERNCIAS, MODE_PRIVATE);
-        preferences.edit().putBoolean(PREFERNCIA_ESTADO, rSesion.isChecked()).apply();
-
-    }
-    public boolean obtenerEstado(){
-        SharedPreferences shapr = getSharedPreferences(PREFERNCIAS, MODE_PRIVATE);
-        return shapr.getBoolean(PREFERNCIA_ESTADO, false);
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser != null){
+            Toast.makeText(LogIn.this, "Bienvenido: " + nombre.getText(), Toast.LENGTH_LONG).show();
+            nextActivity();
+        }
     }
 
-
+    private void nextActivity(){
+        Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
+        iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());  // sacas el uid del usuario logeado;
+        LogIn.this.startActivity(iniciarSesion);
+        finish();
+    }
 }

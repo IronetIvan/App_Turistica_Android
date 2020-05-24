@@ -108,6 +108,7 @@ public class Chat extends AppCompatActivity {
     private void instancias() {
         imagenperfil = findViewById(R.id.fotoperfil);
         nombreusuario = findViewById(R.id.nombrechat);
+        
         listadomensajes = findViewById(R.id.mensajes);
         txtMensajes = findViewById(R.id.txtmensajes);
         btnEnviar = findViewById(R.id.btnEnviarMsg);

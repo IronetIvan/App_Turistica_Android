@@ -37,8 +37,7 @@
             android:textColorHint="#ccc"
             android:background="@drawable/cuadros_texto"
             android:padding="10dp"
-            android:textColor="@color/blanco"
-            android:text="ivan@gmail.com"/>
+            android:textColor="@color/blanco"/>
 
         <EditText
             android:id="@+id/txtpassword"
@@ -52,8 +51,7 @@
             android:background="@drawable/cuadros_texto"
             android:padding="10dp"
             android:textColor="@color/blanco"
-            android:inputType="textPassword"
-            android:text="ivan11"/>
+            android:inputType="textPassword"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,14 +59,6 @@
             android:orientation="vertical"
             android:layout_marginTop="15dp"
             android:layout_gravity="center">
-
-            <RadioButton
-                android:id="@+id/radioSesion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="No cerrar sesión"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"/>
 
             <Button
                 android:id="@+id/btnInicio"

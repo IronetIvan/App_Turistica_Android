@@ -97,8 +97,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.mapas) {
-                    Intent intent = new Intent(MapsActivity.this, MapsActivity.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(MapsActivity.this, MapsActivity.class);
+                    //startActivity(intent);
                 }
                 if (item.getItemId() == R.id.lugares) {
                     Intent intentLugares = new Intent(MapsActivity.this, ListadoLugares.class);

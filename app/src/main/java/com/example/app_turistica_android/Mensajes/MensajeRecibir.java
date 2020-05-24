@@ -1,5 +1,7 @@
 package com.example.app_turistica_android.Mensajes;
 
+import com.example.app_turistica_android.LogIn;
+
 public class MensajeRecibir extends Mensaje {
 
     private Long hora;
@@ -11,8 +13,8 @@ public class MensajeRecibir extends Mensaje {
         this.hora = hora;
     }
 
-    public MensajeRecibir(String mensaje, String urlFoto, String nombre, String fotoPerfil, String type_mensaje, Long hora) {
-        super(mensaje, urlFoto, nombre, fotoPerfil, type_mensaje);
+    public MensajeRecibir(String mensaje, String nombre, String fotoPeril, String type_mensaje, Long hora) {
+        super(mensaje, nombre, fotoPeril, type_mensaje);
         this.hora = hora;
     }
 

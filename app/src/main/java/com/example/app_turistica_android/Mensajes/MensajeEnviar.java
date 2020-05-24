@@ -3,17 +3,18 @@ package com.example.app_turistica_android.Mensajes;
 import java.util.Map;
 
 public class MensajeEnviar extends Mensaje {
+
     private Map hora;
 
-    public MensajeEnviar(String s, String toString, String fotoPerfilCadena, String s1, Map<String, String> timestamp) {
+    public MensajeEnviar() {
     }
 
     public MensajeEnviar(Map hora) {
         this.hora = hora;
     }
 
-    public MensajeEnviar(String mensaje, String urlFoto, String nombre, String fotoPerfil, String type_mensaje, Map hora) {
-        super(mensaje, urlFoto, nombre, fotoPerfil, type_mensaje);
+    public MensajeEnviar(String mensaje, String nombre, String fotoPeril, String type_mensaje, Map hora) {
+        super(mensaje, nombre, fotoPeril, type_mensaje);
         this.hora = hora;
     }
 

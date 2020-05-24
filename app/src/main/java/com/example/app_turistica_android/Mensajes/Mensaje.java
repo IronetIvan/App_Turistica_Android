@@ -1,21 +1,20 @@
 package com.example.app_turistica_android.Mensajes;
 
-public class Mensaje{
+public class Mensaje {
 
     private String mensaje;
-    private String urlFoto;
     private String nombre;
-    private String fotoPerfil;
+    private String fotoPeril;
     private String type_mensaje;
+
 
     public Mensaje() {
     }
 
-    public Mensaje(String mensaje, String urlFoto, String nombre, String fotoPerfil, String type_mensaje) {
+    public Mensaje(String mensaje, String nombre, String fotoPeril, String type_mensaje) {
         this.mensaje = mensaje;
-        this.urlFoto = urlFoto;
         this.nombre = nombre;
-        this.fotoPerfil = fotoPerfil;
+        this.fotoPeril = fotoPeril;
         this.type_mensaje = type_mensaje;
     }
 
@@ -27,14 +26,6 @@ public class Mensaje{
         this.mensaje = mensaje;
     }
 
-    public String getUrlFoto() {
-        return urlFoto;
-    }
-
-    public void setUrlFoto(String urlFoto) {
-        this.urlFoto = urlFoto;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -43,12 +34,12 @@ public class Mensaje{
         this.nombre = nombre;
     }
 
-    public String getFotoPerfil() {
-        return fotoPerfil;
+    public String getFotoPeril() {
+        return fotoPeril;
     }
 
-    public void setFotoPerfil(String fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
+    public void setFotoPeril(String fotoPeril) {
+        this.fotoPeril = fotoPeril;
     }
 
     public String getType_mensaje() {
@@ -58,6 +49,5 @@ public class Mensaje{
     public void setType_mensaje(String type_mensaje) {
         this.type_mensaje = type_mensaje;
     }
-
 
 }

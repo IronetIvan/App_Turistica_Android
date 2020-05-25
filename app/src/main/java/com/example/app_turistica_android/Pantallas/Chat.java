@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Iterator;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -39,17 +43,20 @@ public class Chat extends AppCompatActivity {
     private AdaptadorMensajes adaptadorMensajes;
     private FirebaseDatabase database;
     private DatabaseReference reference;
+    private DatabaseReference myRef;
 
     Usuarios usuarios;
-
+    String uid;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        //uid = getIntent().getExtras().getString("uid");
         instancias();
         acciones();
+        //cargarDatos1();
     }
 
     private void acciones() {
@@ -120,6 +127,37 @@ public class Chat extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference().child("chat");
+        myRef = database.getReference().child("usuarios");
+
+    }
+
+    private void cargarDatos1() {
+        final String uid = getIntent().getExtras().getString("uid");
+        final DatabaseReference nodoUsuarios = myRef.child(uid);
+        //Log.v("prueba", uid);
+
+        nodoUsuarios.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.getKey().equals(uid)) {
+                    Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
+                    Iterator<DataSnapshot> iterator = iterable.iterator();
+
+                    DataSnapshot pass = iterator.next();
+                    DataSnapshot correo = iterator.next();
+                    DataSnapshot usuario = iterator.next();
+
+                    nombreusuario.setText(usuario.getValue().toString());
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Error al cargar datos de usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

@@ -2,15 +2,22 @@ package com.example.app_turistica_android;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,6 +63,7 @@ public class LogIn extends AppCompatActivity {
         instancias();
         acciones();
         createRequest();
+        permisos();
     }
 
 
@@ -239,5 +247,15 @@ public class LogIn extends AppCompatActivity {
         iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());  // sacas el uid del usuario logeado;
         LogIn.this.startActivity(iniciarSesion);
         finish();
+    }
+
+    private void permisos(){
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            String[] permisos = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+            ActivityCompat.requestPermissions(LogIn.this,
+                    permisos, 1);
+        }
+        
     }
 }

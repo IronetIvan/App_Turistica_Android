@@ -106,6 +106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 if (item.getItemId() == R.id.chat) {
                     Intent intentChat = new Intent(MapsActivity.this, Chat.class);
+                    intentChat.putExtra("uid", uid);
                     startActivity(intentChat);
                 }
                 if (item.getItemId() == R.id.perfilusuario) {

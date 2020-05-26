@@ -1,6 +1,7 @@
 package com.example.app_turistica_android.Pantallas;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -53,10 +54,11 @@ public class Chat extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        //uid = getIntent().getExtras().getString("uid");
+        uid = getIntent().getExtras().getString("uid");
+        Log.v("datos",uid);
         instancias();
         acciones();
-        //cargarDatos1();
+        cargarDatos1();
     }
 
     private void acciones() {
@@ -132,7 +134,7 @@ public class Chat extends AppCompatActivity {
     }
 
     private void cargarDatos1() {
-        final String uid = getIntent().getExtras().getString("uid");
+        //final String uid = getIntent().getExtras().getString("uid");
         final DatabaseReference nodoUsuarios = myRef.child(uid);
         //Log.v("prueba", uid);
 

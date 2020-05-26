@@ -116,26 +116,7 @@ public class LogIn extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             //FirebaseUser user = firebaseAuth.getCurrentUser();
                             Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
-
-                            // solo cuando es de google
-                            // partes el correo --> usuario.getText().toString()
-                            // bmartinh@gmail.com -->bmartinhgmail
-                            String nombre = "borja.martin@cesjuanpablosegundo.es";
-                            String primeraParte = nombre.substring(0,nombre.charAt('@')-1);
-                            String segundaParte = nombre.substring(nombre.charAt('@')+1,nombre.length()-1);
-                            String uid = primeraParte+segundaParte;
-
-                            //usuarios
-                                //45a6s7da87asd
-                                //56789asdasdasd
-                                //bmartinhgmail
-                                //45678909asdasd
-                                //asdklajsdlkj76576
-                                //elcorreogmail
-                                    //luegares
-                                    // favoristos
-
-
+                            
                             // sacas el uid del usuario logeado;
                             iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());
                             LogIn.this.startActivity(iniciarSesion);

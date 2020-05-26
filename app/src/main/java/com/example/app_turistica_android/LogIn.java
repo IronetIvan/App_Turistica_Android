@@ -116,7 +116,7 @@ public class LogIn extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             //FirebaseUser user = firebaseAuth.getCurrentUser();
                             Intent iniciarSesion = new Intent(LogIn.this, MapsActivity.class);
-                            
+
                             // sacas el uid del usuario logeado;
                             iniciarSesion.putExtra("uid", firebaseAuth.getCurrentUser().getUid());
                             LogIn.this.startActivity(iniciarSesion);

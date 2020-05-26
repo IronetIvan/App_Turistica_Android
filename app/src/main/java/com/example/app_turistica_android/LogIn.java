@@ -209,7 +209,7 @@ public class LogIn extends AppCompatActivity {
         super.onResume();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser != null){
-            Toast.makeText(LogIn.this, "Bienvenido: " + nombre.getText(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(LogIn.this, "Bienvenido: " + nombre.getText(), Toast.LENGTH_LONG).show();
             nextActivity();
         }
     }
@@ -220,4 +220,8 @@ public class LogIn extends AppCompatActivity {
         LogIn.this.startActivity(iniciarSesion);
         finish();
     }
+
+
+
+
 }

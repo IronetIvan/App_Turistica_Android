@@ -281,7 +281,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         });
                         break;
                     case R.id.todos:
-                        Toast.makeText(getApplicationContext(), "Mostrando lugares de interés", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Mostrando todos los lugares", Toast.LENGTH_SHORT).show();
                         myRef.child("lugares").child("defecto").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
